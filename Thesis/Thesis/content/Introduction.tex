@@ -72,18 +72,32 @@ The two most known uses of the graphics pipeline are within the graphics librari
 
 \paragraph{Performance differences between graphics calculation on a GPU and a CPU}
 
+The main advantage in using shaders in the graphics pipeline on the GPU lies in the increased performance compared to the CPU.
+In this paragraph the performance differences between calculating graphics with the described graphics pipeline on a GPU and calculating it on a CPU will be demonstrated by showing an example.
 
+The example is also implemented within the project created for this work.\myCite{project} The example consists of a simple triangle covering half the space of a window with 640 by 480 pixels as shown in \autoref{fig:triangleSample}. It has to be noted though that there are ways to further optimize the calculation on the CPU. For example the program is not multi threaded and is running in a JIT compiler. But it should be enough to serve as a rough example for the difference in performance.
+
+Rendering the described image on the GPU takes about 0.0015 ms while calculating the same output in the CPU with the implemented example takes about 1500 ms. The rasterizing step with calculating the data for all fragment from the data of the vertices within the corresponding primitives alone takes over 500 ms in this example.
+
+As shown with this example it is desirable to use the graphics pipeline supported on the GPU.
+
+\begin{figure}[h!]
+  \centering 
+  \includegraphics[scale=0.5]{triangleExample.png}
+  \caption[Screenshot of triangle test render]{Example of a triangle rendered on a window with 640 by 480 pixels}
+  \label{fig:triangleSample}
+\end{figure}
 
 \section{Problem with debugging shaders in the graphics pipeline}
 \label{section:problems}
 
-There are ways to debug shaders on the graphics pipeline, as shown in \autoref{section:debuggingMethods}, but there are no general solutions for aiding the user in this debugging process.\myCite{Ciardi.2015}
+As established before there are advantages in the use of shaders and the GPU. There are different tools to support with the implementation of shaders.\myCite{Jones.2019}\myCite{scherzer_visualstudio.2019}\myCite{scherzer_npp.2019} For debugging shaders on the graphics pipeline though there are no general solutions that aid the user in the process.
 
-While most CPUs are very broad in their functionality and support debugging by itself a GPU is more specialized in the way it functions and usually does not have the option to pause the code to enable inspections at runtime and does not even have access to a console or logger to write states into.\myCite{Fox.2017} As explained in more detail in \autoref{section:debuggingMethods_drivers} it is possible to enable debugging on the GPU with specialized drivers for specific hardware.\myCite{Nvidia_debug.2019}\myCite{Microsoft_debug.2016}
+While most CPUs are very broad in their functionality and support debugging by itself a GPU is more specialized in the way it functions and usually does not have the option to pause the code to enable inspections at runtime and does not even have access to a console or logger to write states into.\myCite{Fox.2017}
 
-\paragraph{Existing approaches for compute shaders}
+As explained in more detail in \autoref{section:debuggingMethods_drivers} it is possible to enable debugging on the GPU with specialized drivers for specific hardware.\myCite{Nvidia_debug.2019}\myCite{Microsoft_debug.2016}
 
-There are approaches which enable debugging of compute shader code by translating it from another language. The code is written in a language for the CPU which supports debugging with tools. It is run and debugged on the CPU while it is translated to the shader language to run as a compute shader on the GPU.
+There are also approaches which enable debugging of compute shader code by translating it from another language. The code is written in a language for the CPU which supports debugging with tools. It is run and debugged on the CPU while it is translated to the shader language to run as a compute shader on the GPU.
 See more in \autoref{section:computeApproaches}.
 
 \section{Objective of creating a general solution for debugging shaders in the graphics pipeline}
