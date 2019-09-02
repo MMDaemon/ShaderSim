@@ -4,7 +4,7 @@
 
 \chapter{Contribution}\label{cha:Contribution}
 
-The proposed solution of this work is inspired by the approaches for compute shaders described in \autoref{section:computeApproaches}. The code for the shaders is written in a source language which supports the different methods for debugging listed in \autoref{paragraph:debuging}.
+The proposed solution of this work is inspired by the approaches for compute shaders described in \autoref{section:computeApproaches}. The code for the shaders is written in a source language which supports the different methods for debugging listed in \autoref{paragraph:debuging} while running on the CPU.
 
 To run the shader as usual on the GPU the shaders written in the source language is translated to the shader language and loaded on the hardware.
 
@@ -19,7 +19,7 @@ Shaders within the graphics pipeline have a special way of being structured so t
 
 The translation is done by converting the source language into a syntax tree from which the syntax will be extracted in the shader language. Occurances of variable types also have to be translated to their correct equivalent.
 
-It has to be considered that syntax only existing in the shader language has to be emulated in some way. Examples for this are shown in \autoref{cha:Implementation} for the translation of C\# to GLSL.
+It has to be considered that specific syntax, like header lines or special accessors, only existing in the shader language has to be emulated in some way. Examples for this are shown in \autoref{cha:Implementation} for the translation of C\# to GLSL.
 
 \section{Steps for simulating the graphics pipeline}
 \label{section:contribution_simulating}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using OpenTK.Graphics.OpenGL;
 using ShaderExample.Shaders;
@@ -47,7 +48,7 @@ namespace ShaderExample
             _wrapper.SetUniform("LightDirection", (Vector3)System.Numerics.Vector3.Normalize(new System.Numerics.Vector3(-1f, -1, -1)));
             _wrapper.SetUniform("AmbientLightColor", new Vector4(0.1f, 0.1f, 0.1f, 1f));
             _wrapper.SetUniform("LightColor", new Vector4(1f, 1f, 1f, 1f));
-            //_wrapper.SetUniform("Camera", (Matrix4x4)System.Numerics.Matrix4x4.Transpose(System.Numerics.Matrix4x4.CreateTranslation(new System.Numerics.Vector3(0f, -0.5f, 0))));
+            //_wrapper.SetUniform("Camera", (Matrix4x4)System.Numerics.Matrix4x4.Identity);
 
             List<Texture2D> layers = new List<Texture2D>();
 
@@ -55,7 +56,12 @@ namespace ShaderExample
 
             foreach (var vaoInformation in vaoInformations)
             {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Reset();
+                stopwatch.Start();
                 vaoInformation.Key.Draw(vaoInformation.Value);
+                stopwatch.Stop();
+                Console.WriteLine($"TotalRenderTime:  {stopwatch.Elapsed.TotalMilliseconds}ms\n");
                 if (_wrapper is RenderSimulator)
                 {
                     layers.Add(new Texture2D(((RenderSimulator)_wrapper).RenderResult));

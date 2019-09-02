@@ -12,22 +12,37 @@ namespace ShaderUtils
         [Translation("main")]
         public abstract void Main();
 
+        public Dictionary<string, PropertyInfo> OutProperties;
+        public Dictionary<string, PropertyInfo> InProperties;
+        public Dictionary<string, PropertyInfo> UniformProperties;
+
+
+
+        protected Shader()
+        {
+            IEnumerable<PropertyInfo> properties = GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            OutProperties = properties.Where(property => property.GetCustomAttribute<OutAttribute>() != null).ToDictionary(property => property.Name, property => property);
+            InProperties = properties.Where(property => property.GetCustomAttribute<InAttribute>() != null).ToDictionary(property => property.Name, property => property);
+            UniformProperties = properties.Where(property => property.GetCustomAttribute<UniformAttribute>() != null).ToDictionary(property => property.Name, property => property);
+        }
+
         public void SetValue<TAttribute, TValue>(string name, TValue value) where TAttribute : Attribute where TValue : struct
         {
-            if (GetType().GetProperty(name) != null)
+            PropertyInfo info = GetType().GetProperty(name);
+
+            if (info != null)
             {
-                if (GetType().GetProperty(name).GetCustomAttribute<TAttribute>() != null)
+                if (info.GetCustomAttribute<TAttribute>() != null)
                 {
-                    GetType().GetProperty(name)?.SetValue(this, value);
+                    info?.SetValue(this, value);
                 }
             }
         }
 
+
         public IEnumerable<KeyValuePair<string, object>> GetOutValues()
         {
-            IEnumerable<PropertyInfo> properties = GetType().GetProperties();
-
-            return properties.Where(property => property.GetCustomAttribute<OutAttribute>() != null).ToDictionary(property => property.Name, property => property.GetValue(this));
+            return OutProperties.ToDictionary(method => method.Key, method => OutProperties[method.Key].GetValue(this));
         }
 
         [Translation("max")]

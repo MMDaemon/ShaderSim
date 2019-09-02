@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace ShaderSimulator
 
         private VertexShader _activeVertexShader;
         private FragmentShader _activeFragmentShader;
+
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private double _interim = 0;
 
         public Bitmap RenderResult { get; private set; }
 
@@ -136,18 +140,38 @@ namespace ShaderSimulator
 
         public void DrawElementsInstanced(int instanceCount = 1)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Reset();
-            stopwatch.Start();
+            _stopwatch.Reset();
+            _stopwatch.Start();
+            double time = 0;
+            _interim = 0;
 
+            Console.WriteLine("Setting uniforms");
             SetUniforms();
+            time = _stopwatch.Elapsed.TotalMilliseconds;
+            Console.WriteLine($"Uniforms set. Duration: {time - _interim}ms");
+            _interim = time;
+            Console.WriteLine("Calculating vertex step");
             CalculateVertexStep(instanceCount);
+            time = _stopwatch.Elapsed.TotalMilliseconds;
+            Console.WriteLine($"Vertex step calculated. Duration: {time - _interim}ms");
+            _interim = time;
+            Console.WriteLine("Assembling primitives");
             GeneratePrimitives();
+            time = _stopwatch.Elapsed.TotalMilliseconds;
+            Console.WriteLine($"Primitives assembled. Duration: {time - _interim}ms");
+            _interim = time;
+            Console.WriteLine("Rasterization");
             CalculateFragments();
+            time = _stopwatch.Elapsed.TotalMilliseconds;
+            Console.WriteLine($"Rasterization complete. Duration: {time - _interim}ms");
+            _interim = time;
+            Console.WriteLine("Calculating fragment step");
             RenderResult = CalculateFragmentStep();
+            time = _stopwatch.Elapsed.TotalMilliseconds;
+            Console.WriteLine($"Fragment step calculated. Duration: {time - _interim}ms");
+            _interim = time;
 
-            stopwatch.Stop();
-            Console.WriteLine($"Time: Ticks = {stopwatch.Elapsed.Ticks}; Ms = {stopwatch.Elapsed.TotalMilliseconds}");
+            Console.WriteLine("Cleanup");
 
             Attributes.Clear();
             InstancedAttributes.Clear();
@@ -156,6 +180,11 @@ namespace ShaderSimulator
             _vertexPositions.Clear();
             _vertexValues.Clear();
             _primitives.Clear();
+
+            time = _stopwatch.Elapsed.TotalMilliseconds;
+            Console.WriteLine($"Cleanup complete. Duration: {time - _interim}ms");
+            _interim = time;
+            _stopwatch.Stop();
         }
 
         private void SetUniforms()
@@ -171,9 +200,15 @@ namespace ShaderSimulator
 
         private void SetUniform(string name, object value)
         {
-            MethodInfo generic = _setValueMethod.MakeGenericMethod(typeof(UniformAttribute), value.GetType());
-            generic.Invoke(_activeVertexShader, new object[] { name, value });
-            generic.Invoke(_activeFragmentShader, new object[] { name, value });
+            if (_activeVertexShader.UniformProperties.ContainsKey(name))
+            {
+                _activeVertexShader.UniformProperties[name].SetValue(_activeVertexShader, value);
+            }
+
+            if (_activeFragmentShader.UniformProperties.ContainsKey(name))
+            {
+                _activeFragmentShader.UniformProperties[name].SetValue(_activeFragmentShader, value);
+            }
         }
 
         private void CalculateVertexStep(int instanceCount)
@@ -213,8 +248,10 @@ namespace ShaderSimulator
 
         private void SetAttribute(Shader shader, string name, object value)
         {
-            MethodInfo generic = _setValueMethod.MakeGenericMethod(typeof(InAttribute), value.GetType());
-            generic.Invoke(shader, new object[] { name, value });
+            if (shader.InProperties.ContainsKey(name))
+            {
+                shader.InProperties[name].SetValue(shader, value);
+            }
         }
 
         private void GeneratePrimitives()
@@ -372,15 +409,9 @@ namespace ShaderSimulator
                             bool closest = true;
                             if (DepthEnabled)
                             {
-                                /*if (_depths[x, y][i] < 0)
-                                {
-                                    closest = false;
-                                    continue;
-                                }*/
-
                                 for (int j = 0; j < _depths[x, y].Count; j++)
                                 {
-                                    if (i != j /*&& _depths[x, y][j] >= 0*/)
+                                    if (i != j)
                                     {
                                         if (_depths[x, y][i] > _depths[x, y][j])
                                         {
