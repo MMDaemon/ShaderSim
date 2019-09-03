@@ -15,50 +15,54 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.4}Objective of creating a general solution for debugging shaders in the graphics pipeline}{6}{section.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Related Work}{7}{chapter.2}
+\contentsline {chapter}{\numberline {2}Related Work}{8}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Existing methods for debugging shaders in the graphics pipeline}{7}{section.2.1}
+\contentsline {section}{\numberline {2.1}Existing methods for debugging shaders in the graphics pipeline}{8}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Manual debugging}{7}{section*.8}
+\contentsline {paragraph}{\nonumberline Manual debugging}{8}{section*.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Debugging with special drivers on certain hardware}{7}{section*.9}
+\contentsline {paragraph}{\nonumberline Debugging with special drivers on certain hardware}{8}{section*.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Approaches for debugging compute shaders on the CPU}{8}{section.2.2}
+\contentsline {section}{\numberline {2.2}Approaches for debugging compute shaders on the CPU}{9}{section.2.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.3}Translating shaders from other languages}{9}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Contribution}{11}{chapter.3}
+\contentsline {chapter}{\numberline {3}Contribution}{12}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Steps for translating the shader code}{11}{section.3.1}
+\contentsline {section}{\numberline {3.1}Steps for translating the shader code}{12}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Steps for simulating the graphics pipeline}{12}{section.3.2}
+\contentsline {section}{\numberline {3.2}Steps for simulating the graphics pipeline}{13}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Instance of a shader within the source language}{12}{section*.10}
+\contentsline {paragraph}{\nonumberline Instance of a shader within the source language}{13}{section*.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Implementation of the graphics pipeline}{13}{section*.11}
+\contentsline {paragraph}{\nonumberline Implementation of the graphics pipeline}{14}{section*.11}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Implementation}{14}{chapter.4}
+\contentsline {chapter}{\numberline {4}Implementation}{15}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Structure of a shader in C\#}{14}{section*.12}
+\contentsline {paragraph}{\nonumberline Features implemented}{15}{section*.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Translation of the shader class}{15}{section*.13}
+\contentsline {paragraph}{\nonumberline Structure of a shader in C\#}{15}{section*.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Implementation of the variable types}{16}{section*.14}
+\contentsline {paragraph}{\nonumberline Translation of the shader class}{16}{section*.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Simulating the pipeline}{16}{section*.15}
+\contentsline {paragraph}{\nonumberline Implementation of the variable types}{17}{section*.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Surrounding structure}{17}{section*.16}
+\contentsline {paragraph}{\nonumberline Simulating the pipeline}{17}{section*.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Evaluation}{18}{chapter.5}
+\contentsline {paragraph}{\nonumberline Surrounding structure}{18}{section*.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Used example geometry and shaders}{18}{section*.17}
+\contentsline {paragraph}{\nonumberline Ommited features}{18}{section*.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{19}{chapter.6}
+\contentsline {chapter}{\numberline {5}Evaluation}{19}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Acronyms}{i}{chapter*.20}
+\contentsline {paragraph}{\nonumberline Used example geometry and shaders}{19}{section*.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline List of Figures}{ii}{chapter*.21}
+\contentsline {chapter}{\numberline {6}Conclusion}{20}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Bibliography}{iii}{chapter*.22}
+\contentsline {chapter}{\nonumberline Acronyms}{i}{chapter*.22}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Appendix}{vii}{chapter*.23}
+\contentsline {chapter}{\nonumberline List of Figures}{ii}{chapter*.23}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Bibliography}{iii}{chapter*.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Appendix}{vii}{chapter*.25}

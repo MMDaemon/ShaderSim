@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using ShaderUtils;
 using ShaderUtils.Attributes;
 using ShaderUtils.Mathematics;
@@ -393,14 +394,24 @@ namespace ShaderSimulator
             return new Vector3(u, v, w);
         }
 
+        [StructLayout(LayoutKind.Explicit)]
+        struct Vector4ToInt
+        {
+            [FieldOffset(0)] public int ColorValue;
+            [FieldOffset(0)] public byte valueB;
+            [FieldOffset(1)] public byte valueG;
+            [FieldOffset(2)] public byte valueR;
+            [FieldOffset(3)] public byte valueA;
+        }
+
         private Bitmap CalculateFragmentStep()
         {
-            Bitmap bmp = new Bitmap(_fragments.GetLength(0), _fragments.GetLength(1));
+            int[] imageData = new int[_fragments.GetLength(0) * _fragments.GetLength(1)];
+            Vector4ToInt vec4ToInt = new Vector4ToInt();
             for (int x = 0; x < _fragments.GetLength(0); x++)
             {
                 for (int y = 0; y < _fragments.GetLength(1); y++)
                 {
-                    bmp.SetPixel(x, y, Color.Transparent);
                     if (_fragments[x, y] != null)
                     {
                         for (int i = 0; i < _fragments[x, y].Values.First().Count; i++)
@@ -431,11 +442,12 @@ namespace ShaderSimulator
                                 {
                                     if (outValue.Key == FragmentShader.ColorName)
                                     {
-                                        Color color = Color.FromArgb(Math.Min((int)(((Vector4)outValue.Value).A * 255), 255),
-                                            Math.Min((int)(((Vector4)outValue.Value).R * 255), 255),
-                                            Math.Min((int)(((Vector4)outValue.Value).G * 255), 255),
-                                            Math.Min((int)(((Vector4)outValue.Value).B * 255), 255));
-                                        bmp.SetPixel(x, y, color);
+                                        vec4ToInt.ColorValue = 0;
+                                        vec4ToInt.valueA = (byte)Math.Min((int)(((Vector4)outValue.Value).A * 255), 255);
+                                        vec4ToInt.valueR = (byte)Math.Min((int)(((Vector4)outValue.Value).R * 255), 255);
+                                        vec4ToInt.valueG = (byte)Math.Min((int)(((Vector4)outValue.Value).G * 255), 255);
+                                        vec4ToInt.valueB = (byte)Math.Min((int)(((Vector4)outValue.Value).B * 255), 255);
+                                        imageData[x + y * Width] = vec4ToInt.ColorValue;
                                     }
                                 }
                             }
@@ -443,8 +455,7 @@ namespace ShaderSimulator
                     }
                 }
             }
-
-            return bmp;
+            return new Bitmap(Width, Height, Width, System.Drawing.Imaging.PixelFormat.Format32bppArgb, Marshal.UnsafeAddrOfPinnedArrayElement(imageData, 0));
         }
     }
 }

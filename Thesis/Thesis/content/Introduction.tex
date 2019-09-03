@@ -9,7 +9,9 @@ To introduce the content of this work the concepts of debugging and the behavior
 
 "Debugging is the process of locating and removing faults in computer programs" according to \myCite{Collins_debugging.2014}. The steps that are part of the debugging process are reproducing the problem, identifying the source of the problem and fixing the problem. All of these steps can be done manually but there are ways to improve and accelerate this process.
 
-To find problems there is the option of writing automated tests, inserting debug outputs on the console into the source code or writing states into log files. This enables the programmer to find anomalies before, while and after running the program.
+It is possible to write a program with formal verificattion. Here the program is based on a mathematical proof ensuring its correctness. For these programs debugging is not necessary but formal verification has its limits with porgrams getting too complex. \myCite{bolton2013using}
+
+For debugging, to find problems there is the option of writing automated tests, inserting debug outputs on the console into the source code or writing states into log files. This enables the programmer to find anomalies before, while and after running the program.
 
 When a way is found to reproduce the problem, to find the source of it the manual way is to increase the amount of debug outputs around the problematic part of the code and confine the point in the code at which the error occurs.
 
@@ -35,7 +37,7 @@ A shader is a program running on the GPU thereby mostly running as part of the g
 
 The main use of the graphics pipeline is to generate an graphical output in form of a raster image out of geometry data. The GPU is a hardware specialized for this process leading to improved performance implementing it compared to running the same calculations on the CPU. This is shown in more detail in the paragraph at the end of this section.
 
-The most used types of shaders on the graphisc pipeline are the vertex shader, the tesselation shader, the geometry shader and the fragment shader. Their basic functionality is described in the following paragraph showing the sequence of events within the graphics pipeline.
+The most used types of shaders on the graphics pipeline are the vertex shader, the tesselation shader, the geometry shader and the fragment shader. Their basic functionality is described in the following paragraph showing the sequence of events within the graphics pipeline.
 
 \paragraph{Structure of the graphics pipeline}
 \label{paragraph:pipeline}
@@ -75,9 +77,9 @@ The two most known uses of the graphics pipeline are within the graphics librari
 The main advantage in using shaders in the graphics pipeline on the GPU lies in the increased performance compared to the CPU.
 In this paragraph the performance differences between calculating graphics with the described graphics pipeline on a GPU and calculating it on a CPU will be demonstrated by showing an example.
 
-The example is also implemented within the project created for this work.\myCite{project} The example consists of a simple triangle covering half the space of a window with 640 by 480 pixels as shown in \autoref{fig:triangleSample}. It has to be noted though that there are ways to further optimize the calculation on the CPU. For example the program is not multi threaded and is running in a JIT compiler. But it should be enough to serve as a rough example for the difference in performance.
+The example is also implemented within the project created for this work.\myCite{project} The example consists of a simple triangle covering half the space of a window with 640 by 480 pixels as shown in \autoref{fig:triangleSample}. The example is run on a Nvidia GTX970 as GPU and a Intel i7-6700K as CPU. It has to be noted though that there are ways to further optimize the calculation on the CPU. For example the program is not multi threaded and is running in a JIT compiler. But it should be enough to serve as a rough example for the difference in performance.
 
-Rendering the described image on the GPU takes about 0.0015 ms while calculating the same output in the CPU with the implemented example takes about 1500 ms. The rasterizing step with calculating the data for all fragment from the data of the vertices within the corresponding primitives alone takes over 500 ms in this example.
+Rendering the described image on the GPU takes about 0.0015 ms while calculating the same output in the CPU with the implemented example takes about 800 ms. The rasterizing step with calculating the data for all fragment from the data of the vertices within the corresponding primitives alone takes over 300 ms in this example.
 
 As shown with this example it is desirable to use the graphics pipeline supported on the GPU.
 
@@ -110,7 +112,13 @@ The objective of this work is to create a general solution to enable debugging o
 	\item The solution is not dependent on the use of specific graphics cards or drivers.
 	\item It is possible to switch between a mode where debugging is enabled and a mode where the shaders run as usual, so the program can run with the full performance and without interference of the debugger.
 	\item The resulting output per render iteration of the debugger is close to the output of the program with the undebugged shader. It is close enough that the programmer can see what the rendering result without the debugger would look like. Errors like those resulting from the use of float variables with their inaccuracies are tolerable because there are tolerances within human perception where minimal changes in position or color within a rendered result do not matter.\myCite{Franz.2006}
-	\item Performance is not a major requirement while running the debugger. It is possible to see the output and the values of the shader within each frame and iterate through the frames. It is not necessary to view the result in the speed of the final application while debugging. The programmer uses time to inspect the values within the shader which would not be possible with changing variables at high speeds like the 60 frames per second a usual graphics application has.\myCite{Christensson.2015} The debug application should fulfil acceptable response times for user interfaces. "10 seconds is about the limit for keeping the user's attention focused on the dialogue." according to \myCite{Nielson.1993}.
+	\item Performance is not a major requirement while running the debugger. It is possible to see the output and the values of the shader within each frame and iterate through the frames. It is not necessary to view the result in the speed of the final application while debugging. In existing debugging tools the programmer also has to wait until the functionality of the program reaches the point where the part of the program wished to debug is executed. This means the debugger does not have to be as fast as a user interface with the goal of a fluid user experience would have to, but it suffices to have the user to not wait too long. According to \myCite{Nielson.1993} there are the following three important limits:
+	\begin{itemize}
+	\item "0.1 second is about the limit for having the user feel that the system is reacting instantaneously, meaning that no special feedback is necessary except to display the result."
+	\item "1.0 second is about the limit for the user's flow of thought to stay uninterrupted, even though the user will notice the delay. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second, but the user does lose the feeling of operating directly on the data."
+    \item "10 seconds is about the limit for keeping the user's attention focused on the dialogue. For longer delays, users will want to perform other tasks while waiting for the computer to finish, so they should be given feedback indicating when the computer expects to be done. Feedback during the delay is especially important if the response time is likely to be highly variable, since users will then not know what to expect."
+	\end{itemize}
+	Therefor the targeted performance for the user not having to wait to long should eneble the user to reach a debugging point within maximum 10 seconds.
 \end{itemize}
 
 

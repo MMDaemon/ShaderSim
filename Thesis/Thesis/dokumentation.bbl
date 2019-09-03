@@ -17,6 +17,48 @@
 \endgroup
 
 \datalist[entry]{nyt/global//global/global}
+  \entry{bolton2013using}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BML}{%
+         family={Bolton},
+         familyi={B\bibinitperiod},
+         given={Matthew\bibnamedelima L},
+         giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=BEJ}{%
+         family={Bass},
+         familyi={B\bibinitperiod},
+         given={Ellen\bibnamedelima J},
+         giveni={E\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=SRI}{%
+         family={Siminiceanu},
+         familyi={S\bibinitperiod},
+         given={Radu\bibnamedelima I},
+         giveni={R\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{BMLBEJSRI1}
+    \strng{fullhash}{BMLBEJSRI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{3}
+    \field{pages}{488\bibrangedash 503}
+    \field{title}{Using formal verification to evaluate human-automation
+  interaction: A review}
+    \field{volume}{43}
+    \field{journaltitle}{IEEE Transactions on Systems, Man, and Cybernetics:
+  Systems}
+    \field{year}{2013}
+  \endentry
+
   \entry{Campy}{online}{}
     \field{labeltitlesource}{title}
     \field{sortinit}{C}
@@ -26,33 +68,6 @@
     \verb http://campynet.com/
     \endverb
     \field{urlday}{24}
-    \field{urlmonth}{08}
-    \field{urlyear}{2019}
-  \endentry
-
-  \entry{Christensson.2015}{online}{}
-    \name{author}{1}{}{%
-      {{hash=CP}{%
-         family={Christensson},
-         familyi={C\bibinitperiod},
-         given={P.},
-         giveni={P\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{CP1}
-    \strng{fullhash}{CP1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2015}
-    \field{labeldatesource}{year}
-    \field{sortinit}{C}
-    \field{sortinithash}{C}
-    \field{title}{FPS Definition}
-    \verb{url}
-    \verb https://techterms.com/definition/fps#
-    \endverb
-    \field{year}{2015}
-    \field{urlday}{22}
     \field{urlmonth}{08}
     \field{urlyear}{2019}
   \endentry
