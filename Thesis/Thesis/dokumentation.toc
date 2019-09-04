@@ -37,32 +37,32 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Implementation of the graphics pipeline}{14}{section*.11}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Implementation}{15}{chapter.4}
+\contentsline {chapter}{\numberline {4}Implementation}{16}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Features implemented}{15}{section*.12}
+\contentsline {paragraph}{\nonumberline Features implemented}{16}{section*.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Structure of a shader in C\#}{15}{section*.13}
+\contentsline {paragraph}{\nonumberline Structure of a shader in C\#}{17}{section*.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Translation of the shader class}{16}{section*.14}
+\contentsline {paragraph}{\nonumberline Translation of the shader class}{18}{section*.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Implementation of the variable types}{17}{section*.15}
+\contentsline {paragraph}{\nonumberline Implementation of the variable types}{18}{section*.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Simulating the pipeline}{17}{section*.16}
+\contentsline {paragraph}{\nonumberline Simulating the pipeline}{19}{section*.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Surrounding structure}{18}{section*.17}
+\contentsline {paragraph}{\nonumberline Surrounding structure}{19}{section*.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Ommited features}{18}{section*.18}
+\contentsline {paragraph}{\nonumberline Ommited features}{19}{section*.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Evaluation}{19}{chapter.5}
+\contentsline {chapter}{\numberline {5}Evaluation}{21}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Used example geometry and shaders}{19}{section*.19}
+\contentsline {paragraph}{\nonumberline Used example geometry and shaders}{21}{section*.20}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{20}{chapter.6}
+\contentsline {chapter}{\numberline {6}Conclusion}{22}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Acronyms}{i}{chapter*.22}
+\contentsline {chapter}{\nonumberline Acronyms}{i}{chapter*.23}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline List of Figures}{ii}{chapter*.23}
+\contentsline {chapter}{\nonumberline List of Figures}{ii}{chapter*.24}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Bibliography}{iii}{chapter*.24}
+\contentsline {chapter}{\nonumberline Bibliography}{iii}{chapter*.25}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Appendix}{vii}{chapter*.25}
+\contentsline {chapter}{\nonumberline Appendix}{vii}{chapter*.26}

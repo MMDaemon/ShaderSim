@@ -11,12 +11,18 @@ By writing the code in C\# all debugging features coming with VisualStudio can b
 
 \paragraph{Features implemented}
 
-The project is a proof of concept where only parts of the functionality of shaders in the graphics pipeline are implemented. The implemented features suffice to run a basic example and evaluate the process as described in \autoref{cha:Evaluation}. In the following the different features are listed. The necessary steps to implement them are shown in the subsequent paragraphs.
+The project is a proof of concept where only parts of the functionality of shaders in the graphics pipeline are implemented. The implemented features suffice to run a basic example and evaluate the process as described in \autoref{cha:Evaluation}. In the following the different features needed to fulfill this requirement are listed. The necessary steps to implement them are shown in the subsequent paragraphs.
 
 \begin{itemize}
 \item Only the two types of shaders necessary to calculate a graphical output are supported. These are the vertex shader and the fragment shader which are processing the vertex and the fragment data within the graphics pipeline.
-
+\item For the primitives only the type triangle is supported.
+\item The result is a image with color outputs for each fragment. This is the usual output for a process in the graphics pipeline and used for the example.
+\item The viewport is always spanning the full output window to simplify the required calculations.
+\item The depth test is implemented to enable the rendering of basic 3D scenes.
+\item Only a limited set of variable types and methods to use in a shader are supported. Which ones is explained in more detail in a paragraph below.
 \end{itemize}
+
+In the following paragraphs it is further explained how the translation and the simulation are implemented and which part of them is used to add these features.
 
 \paragraph{Structure of a shader in C\#}
 
@@ -64,7 +70,7 @@ The application is ment to be a simple example for debugging basic shaders and t
 \begin{itemize}
 \item The primitive type is hardcoded for the use of triangle primitives only. Triangle is the most used primitive type and is sufficient to render working examples.
 \item The application always runs for a default viewport spanning the whole output size of the application and does not implement viewport transformation.
-\item The depth buffer and the use of depth filtering are implemented for handling basic 3D applications. A stencil buffer is not implemented and the use of stencils is not supported in the project.
+\item For the evaluation of the fragments only the depth buffer and the use of depth filtering are implemented for handling basic 3D applications.
 \item The fragment shader always returns a color value so the application always has a graphical output.
 \end{itemize}
 
@@ -86,6 +92,10 @@ In this paragraph a list of features not implemented in the project is presented
 
 \begin{itemize}
 \item In addition to the two shader types supported in the project there are other types of shaders like the tesselation shader and the geometry shader which can implement further manipulation or addition of vertices. These were left out in the project because implementing their support is not necessary for the example application and would just inflate the code of the simulation. For implementing them corresponding sub classes of the class "Shader" with the respective inputs, outputs and usually hardware implemented functionality would be implemented and their execution would be added to the simulated pipeline.
-
+\item Other primitive types than the triangle type can be supported by expanding the primitiva assembly. In the project only meshes consisting triangles were rendered therefore this was not necessary.
+\item To enable the result being something different than an image consisting of a raster of color data or having additional data outputs a way to return all output values of the fragment shader in a raster to be used after the execution of the simulated pipeline would have to be added. This is not implemented because the presented example only produces an image as uotput.
+\item To support rendering in a specified viewport a option to define a viewport and the viewport transformation within the pipeline have to be added to the simulation.
+\item More evaluation types for the fragments than the depth test are not implemented. If features like the use of stencils with a stencil bufer or blending are desired these can be implemented after the execution of the fragment shader.
+\item If more variable types and methods are desired to be available to use for coding a shader their equivalents have to be implemented for the simulation. Not all methods and all variable types are implemented for the example to reduce the time needed for the implementation.
 \end{itemize}
 
