@@ -16,10 +16,10 @@ The project is a proof of concept where only parts of the functionality of shade
 \begin{itemize}
 \item Only the two types of shaders necessary to calculate a graphical output are supported. These are the vertex shader and the fragment shader which are processing the vertex and the fragment data within the graphics pipeline.
 \item For the primitives only the type triangle is supported.
-\item The result is a image with color outputs for each fragment. This is the usual output for a process in the graphics pipeline and used for the example.
+\item The result is an image with color outputs for each fragment. This is the usual output for a process in the graphics pipeline and used for the example.
 \item The viewport is always spanning the full output window to simplify the required calculations.
 \item The depth test is implemented to enable the rendering of basic 3D scenes.
-\item Only a limited set of variable types and methods to use in a shader are supported. Which ones is explained in more detail in a paragraph below.
+\item Only a limited set of variable types and methods to use in a shader are supported. Which ones are supported, is explained in more detail in a paragraph below.
 \end{itemize}
 
 In the following paragraphs it is further explained how the translation and the simulation are implemented and which part of them is used to add these features.
@@ -32,13 +32,13 @@ The base class "Shader" has following features:
 \begin{itemize}
 \item An abstract "Main" function which acts as the entry point for each shader and has to be implemented in the different shaders.
 \item an implementation of the different mathematical functions necessary for the basic examples.
-\item A method which allows to set the value of a property within the shader class by passing its name as a string and the value as a generic type. The properties are found and the value is set by accessing it via Reflection. This method also gets an attribute type to be able to check if the property has a specific custom attribute attached to it. This is used to differentiate between a property emulating a "in" or a "uniform" variable.
+\item A method which allows to set the value of a property within the shader class by passing its name as a string and the value as a generic type. The properties are found, and the value is set by accessing it via Reflection. This method also gets an attribute type to be able to check if the property has a specific custom attribute attached to it. This is used to differentiate between a property emulating a "in" or a "uniform" variable.
 \item A method to return the names and values of all properties having a custom attribute of the type "OutAttribute" attached to them. These properties are found by using Reflection.
 \end{itemize}
 
 To implement the different behaviors of a vertex and a fragment shader, the resulting shaders are not directly inheriting the Shader class but one of two additional abstract classes implementing the base class "Shader":
 \begin{itemize}
-\item The "VertexShader" class having an additional property named "Position" to emulate the built-in variable "gl\_Position" GLSL has \myCite{Khronos_builtIn.2015}. This ensures the vertex shader to always return a position value for the output vertex.
+\item The "VertexShader" class having an additional property named "Position" to emulate the built-in variable "gl\_Position" GLSL has \myCite{Shreiner.2013}. This ensures the vertex shader to always return a position value for the output vertex.
 \item The "fragmentShader" class having an additional property named "Color" with a "OutAttribute" attached to it so there is always a Color variable to draw the fragments.
 \end{itemize}
 
@@ -60,7 +60,7 @@ There are special patterns in the GLSL code that have no direct equivalent withi
 
 \paragraph{Implementation of the variable types}
 
-To run the shader within the pipeline the code within it has to be functional. For this reason the different variable types with their functionality have to be implemented in C\#. For this project the implementation is limited on the variable types "vec2", "vec3", "vec4" and "mat4". For each of these a equivalent is implemented. By implementing them as structs instead of classes, the value based behavior they have in the GLSL code is reconstructed. These structs are implemented based on float values like their GLSL counterparts. The different forms of accessing their values are implemented in the form of properties and the necessary operators for the mathematical calculations with them are added.
+To run the shader within the pipeline, the code within it has to be functional. For this reason the different variable types with their functionality have to be implemented in C\#. For this project the implementation is limited on the variable types "vec2", "vec3", "vec4" and "mat4". For each of these a equivalent is implemented. By implementing them as structs instead of classes, the value based behavior they have in the GLSL code is reconstructed. These structs are implemented based on float values like their GLSL counterparts. The different forms of accessing their values are implemented in the form of properties and the necessary operators for the mathematical calculations with them are added.
 
 \paragraph{Simulating the pipeline}
 
@@ -92,10 +92,10 @@ In this paragraph a list of features not implemented in the project is presented
 
 \begin{itemize}
 \item In addition to the two shader types supported in the project there are other types of shaders like the tesselation shader and the geometry shader which can implement further manipulation or addition of vertices. These were left out in the project because implementing their support is not necessary for the example application and would just inflate the code of the simulation. For implementing them corresponding sub classes of the class "Shader" with the respective inputs, outputs and usually hardware implemented functionality would be implemented and their execution would be added to the simulated pipeline.
-\item Other primitive types than the triangle type can be supported by expanding the primitiva assembly. In the project only meshes consisting triangles were rendered therefore this was not necessary.
-\item To enable the result being something different than an image consisting of a raster of color data or having additional data outputs a way to return all output values of the fragment shader in a raster to be used after the execution of the simulated pipeline would have to be added. This is not implemented because the presented example only produces an image as uotput.
-\item To support rendering in a specified viewport a option to define a viewport and the viewport transformation within the pipeline have to be added to the simulation.
-\item More evaluation types for the fragments than the depth test are not implemented. If features like the use of stencils with a stencil bufer or blending are desired these can be implemented after the execution of the fragment shader.
+\item Other primitive types than the triangle type can be supported by expanding the primitive assembly. In the project only meshes consisting triangles were rendered, therefore this was not necessary.
+\item To enable the result being something different than an image consisting of a raster of color data or having additional data outputs a way to return all output values of the fragment shader in a raster to be used after the execution of the simulated pipeline would have to be added. This is not implemented because the presented example only produces an image as output.
+\item To support rendering in a specified viewport an option to define a viewport and the viewport transformation within the pipeline have to be added to the simulation.
+\item More evaluation types for the fragments than the depth test are not implemented. If features like the use of stencils with a stencil buffer or blending are desired these can be implemented after the execution of the fragment shader.
 \item If more variable types and methods are desired to be available to use for coding a shader their equivalents have to be implemented for the simulation. Not all methods and all variable types are implemented for the example to reduce the time needed for the implementation.
 \end{itemize}
 

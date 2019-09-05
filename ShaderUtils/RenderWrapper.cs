@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace ShaderUtils
+﻿namespace ShaderUtils
 {
     public abstract class RenderWrapper
     {

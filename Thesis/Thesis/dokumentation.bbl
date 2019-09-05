@@ -125,6 +125,34 @@
     \field{urlyear}{2019}
   \endentry
 
+  \entry{Shreiner.2013}{book}{}
+    \name{author}{1}{}{%
+      {{hash=DSJKGS}{%
+         family={Dave\bibnamedelima Shreiner},
+         familyi={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+         suffix={Graham\bibnamedelima Sellers},
+         suffixi={G\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={John\bibnamedelima Kessnich},
+         giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Addison-Wesley Professional}%
+    }
+    \strng{namehash}{DSGSJK1}
+    \strng{fullhash}{DSGSJK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{labeldatesource}{year}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{isbn}{978-0321773036}
+    \field{title}{OpenGL Programming Guide: The Official Guide to Learning
+  OpenGL, Version 4.3 (8th Edition)}
+    \field{year}{2013}
+  \endentry
+
   \entry{Fox.2017}{online}{}
     \name{author}{1}{}{%
       {{hash=FA}{%
@@ -393,31 +421,6 @@
     \field{year}{1982}
   \endentry
 
-  \entry{Khronos_builtIn.2015}{online}{}
-    \name{author}{1}{}{%
-      {{hash=K}{%
-         family={Khronos},
-         familyi={K\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{K1}
-    \strng{fullhash}{K1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2015}
-    \field{labeldatesource}{year}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \field{title}{Built-in Variable (GLSL)}
-    \verb{url}
-    \verb https://www.khronos.org/opengl/wiki/Built-in_Variable_(GLSL)
-    \endverb
-    \field{year}{2015}
-    \field{urlday}{28}
-    \field{urlmonth}{08}
-    \field{urlyear}{2019}
-  \endentry
-
   \entry{Khronos_pipeline.2019}{online}{}
     \name{author}{1}{}{%
       {{hash=K}{%
@@ -430,7 +433,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2019}
-    \field{extradate}{1}
     \field{labeldatesource}{year}
     \field{sortinit}{K}
     \field{sortinithash}{K}
@@ -440,58 +442,6 @@
     \endverb
     \field{year}{2019}
     \field{urlday}{27}
-    \field{urlmonth}{08}
-    \field{urlyear}{2019}
-  \endentry
-
-  \entry{Khronos_shader.2019}{online}{}
-    \name{author}{1}{}{%
-      {{hash=K}{%
-         family={Khronos},
-         familyi={K\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{K1}
-    \strng{fullhash}{K1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2019}
-    \field{extradate}{2}
-    \field{labeldatesource}{year}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \field{title}{Shader}
-    \verb{url}
-    \verb https://www.khronos.org/opengl/wiki/Shader
-    \endverb
-    \field{year}{2019}
-    \field{urlday}{22}
-    \field{urlmonth}{08}
-    \field{urlyear}{2019}
-  \endentry
-
-  \entry{Khronos_compute.2019}{online}{}
-    \name{author}{1}{}{%
-      {{hash=K}{%
-         family={Khronos},
-         familyi={K\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{K1}
-    \strng{fullhash}{K1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2019}
-    \field{extradate}{3}
-    \field{labeldatesource}{year}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \field{title}{Shader}
-    \verb{url}
-    \verb https://www.khronos.org/opengl/wiki/Compute_Shader
-    \endverb
-    \field{year}{2019}
-    \field{urlday}{22}
     \field{urlmonth}{08}
     \field{urlyear}{2019}
   \endentry
@@ -804,6 +754,60 @@
     \field{urlday}{22}
     \field{urlmonth}{08}
     \field{urlyear}{2019}
+  \endentry
+
+  \entry{Shirley.2009}{book}{}
+    \name{author}{1}{}{%
+      {{hash=PSSM}{%
+         family={Peter\bibnamedelima Shirley},
+         familyi={P\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Steve\bibnamedelima Marschner},
+         giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {A K Peters/CRC Press}%
+    }
+    \strng{namehash}{PSSM1}
+    \strng{fullhash}{PSSM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2009}
+    \field{labeldatesource}{year}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{isbn}{978-1568814698}
+    \field{title}{Fundamentals of Computer Graphics 3rd Edition}
+    \field{year}{2009}
+  \endentry
+
+  \entry{Wright.2007}{book}{}
+    \name{author}{1}{}{%
+      {{hash=RSWNHBL}{%
+         family={Richard S.\bibnamedelima Wright},
+         familyi={R\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim
+  W\bibinitperiod},
+         suffix={Benjamin\bibnamedelima Lipchak},
+         suffixi={B\bibinitperiod\bibinitdelim L\bibinitperiod},
+         given={Nicolas\bibnamedelima Haemel},
+         giveni={N\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Addison-Wesley Professional}%
+    }
+    \strng{namehash}{RSWBLNH1}
+    \strng{fullhash}{RSWBLNH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{year}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{isbn}{978-0321498823}
+    \field{title}{OpenGL SuperBible: Comprehensive Tutorial and Reference (4th
+  Edition)}
+    \field{year}{2007}
   \endentry
 
   \entry{scherzer_visualstudio.2019}{online}{}

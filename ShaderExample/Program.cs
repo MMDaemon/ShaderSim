@@ -1,9 +1,4 @@
-using System;
-using System.IO;
 using OpenTK;
-using ShaderExample.Shaders;
-using ShaderTranslator;
-using ShaderUtils;
 
 namespace ShaderExample
 {
@@ -11,14 +6,9 @@ namespace ShaderExample
     {
         static void Main(string[] args)
         {
-            //RenderTranslator translator = new RenderTranslator();
-            //string directory = Directory.GetCurrentDirectory();
-            //translator.RegisterShader(new LightedVertex(), new PassFragment(), directory + @"\..\..\Shaders\LightedFragment.cs", directory + @"\..\..\Shaders\PassFragment.cs");
-            //Console.Read();
-
             GameWindow window = new GameWindow();
             Model model = new Model();
-            View view = new View(true);
+            View view = new View(false);
 
             window.UpdateFrame += (s, e) => model.Update((float)e.Time);
             window.RenderFrame += (s, e) => view.Render(model.Entities);

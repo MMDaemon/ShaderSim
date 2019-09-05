@@ -23,7 +23,9 @@ Examples implementing this for simulating CUDA shders in C\# are \myCite{ILGPU} 
 
 The advantage compute shaders have in comparison with other kinds of shader programs is that they run independently of the graphics pipeline. For a compute shader a buffer of input data is defined. The compute shader is then executed writing the results in an output buffer. The output can be accessed by copying this buffer. This process can be emulated within a program running on the CPU by applying the calculations of this shader to the data as a function.
 
-In comparison, for a shader in the graphics pipeline the inputs and outputs are handeled by the pipeline. The user defines the input for the pipeline itself. The shaders define how the data is processed within their corresponding stage and which data flows in and out of this stage. Inbetween the shader stages there are calculations applied to the data flowing through. These calculations are given by the pipeline. Here the individual shaders are dependent on the pipeline and the shaders for the other shader stages. Because of this emulating shaders in the graphics pipeline is more complex than emulating compute shaders.
+In comparison, for a shader in the graphics pipeline, the inputs and outputs are handled by the pipeline. The user defines the input for the pipeline itself. The shaders define how the data is processed within their corresponding stage and which data flows in and out of this stage. In between the shader stages there are calculations applied to the data flowing through. These calculations are given by the pipeline. Here the individual shaders are dependent on the pipeline and the shaders for the other shader stages. Because of this emulating shaders in the graphics pipeline is more complex than emulating compute shaders.
+
+\newpage
 
 \section{Translating shaders from other languages}\label{section:translating}
 

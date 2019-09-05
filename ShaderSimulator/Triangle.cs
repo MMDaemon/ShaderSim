@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using ShaderUtils.Mathematics;
+﻿using System.Collections.Generic;
 
 namespace ShaderSimulator
 {

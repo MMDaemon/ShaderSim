@@ -9,7 +9,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Structure of the graphics pipeline}{2}{section*.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Performance differences between graphics calculation on a GPU and a CPU}{3}{section*.6}
+\contentsline {paragraph}{\nonumberline Performance differences between graphics calculation on a GPU and a CPU}{4}{section*.6}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}Problem with debugging shaders in the graphics pipeline}{5}{section.1.3}
 \defcounter {refsection}{0}\relax 
@@ -25,7 +25,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.2}Approaches for debugging compute shaders on the CPU}{9}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Translating shaders from other languages}{9}{section.2.3}
+\contentsline {section}{\numberline {2.3}Translating shaders from other languages}{10}{section.2.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Contribution}{12}{chapter.3}
 \defcounter {refsection}{0}\relax 
@@ -57,12 +57,24 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Used example geometry and shaders}{21}{section*.20}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{22}{chapter.6}
+\contentsline {paragraph}{\nonumberline Translation functionality}{22}{section*.22}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Acronyms}{i}{chapter*.23}
+\contentsline {paragraph}{\nonumberline Result of the simulation}{25}{section*.23}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline List of Figures}{ii}{chapter*.24}
+\contentsline {paragraph}{\nonumberline Debugging of the C\# shaders}{25}{section*.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Bibliography}{iii}{chapter*.25}
+\contentsline {paragraph}{\nonumberline Behavior when using non supported features in the C\# shader}{26}{section*.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Appendix}{vii}{chapter*.26}
+\contentsline {chapter}{\numberline {6}Conclusion}{29}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Possible modifications and improvements}{29}{section*.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Acronyms}{i}{chapter*.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline List of Figures}{ii}{chapter*.31}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Listings}{iii}{chapter*.32}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Bibliography}{iv}{chapter*.33}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Appendix}{viii}{chapter*.34}

@@ -2,24 +2,25 @@
 
 \chapter{Conclusion}\label{cha:Conclusion}
 
-As shown with the project \myCite{project} it is possible to enable debugging of shaders in the graphics pipeline by simulating them on the CPU. All objectives enumerated in \autoref{paragraph:objective} are met:
+As shown in \autoref{cha:Evaluation} it is possible to enable debugging of shaders in the graphics pipeline by simulating them on the CPU. All objectives enumerated in \autoref{paragraph:objective} are met:
 
 \begin{itemize}
-\item The different tools VisualStudio provides to aid in the debugging process can be utilized for the shader code written in C\# as shown in \autoref{fig:debugging}. Thereby a large number of methods to assist debugging are usable.
+\item The different tools VisualStudio provides to aid in the debugging process can be utilized for the shader code written in C\#. Thereby a large number of methods to assist debugging are usable.
 \item No specific graphics card or drivers are needed for this method. 
 \item It can be switched between a mode where debugging is enabled and a mode where the full performance of the GPU is utilized.
 \item The render result per iteration does not have any noticeable differences.
-\item Calculating the full graphics pipeline with the shaders in the given example takes about 5 seconds per iteration. Consequently all desired debug points occurring in a frame can be reached within this time. This performance is acceptable for a user interface as mentioned in \autoref{paragraph:objective}.
+\item Calculating the full graphics pipeline with the shaders in the given example takes about 5 seconds per iteration. Consequently all desired debug points occurring in a frame can be reached within this time. This performance is acceptable for a user interface as stated in \autoref{paragraph:objective}.
 \end{itemize}
 
-\begin{figure}[h!]
-  \centering 
-  \includegraphics[angle=90,origin=c,scale=0.4]{debugging.png}
-  \caption[Screenshot of debug screen within VisualStudio]{Debugging shader with different tools in VisualStudio: setting breakpoints, breakpoints with conditions, stepping through the code, variable inspection, navigating through the call stack}
-  \label{fig:debugging}
-\end{figure}
+The project implemented as part of this research is limited in its functionality, but it serves as proof for the practicability of the presented methods. It is a functioning method which could be refined and realized in a full tool supporting different source and output languages.
 
-The project implemented as part of this research is limited in its functionality but it serves as proof for the practicability of the presented methods. It is a functioning method which could be refined and realized in a full tool supporting different source and output languages.
+\paragraph{Possible modifications and improvements}
+
+As stated in \autoref{cha:Evaluation} the biggest issue with simulating the graphics pipeline is the performance. This could be improved through multiple ways. The program could be implemented using multiple threads and thereby being able to calculate the simulated steps more parallel on the CPU. Even more improvement would be achieved by implementing parts of the simulated pipeline as compute shaders and running them optimized on the GPU again. For example the performance of the rasterisation process would benefit from this.
+
+To get to the points in the shader faster where it is desired to be able to debug it would also be possible to limit the functionality of the simulated pipeline to this specific part. If for example within the pipeline only the fragments resulting in a specific pixel of the output would be calculated the rest of the rasterisation step could be omitted resulting in far less calculation and time before the desired point to start debugging is reached. The output image of the pipeline would no longer be similar to the resulting image of the shader running on the GPU but the values for this pixel would still be calculated correctly.
+
+It would also be possible to just implement parts of the pipeline. For example it would be possible to debug only a fragment shader. The input values for this shader could be generated without calculating the vertex data. A way to generate these inputs would be to simply give the fragments an input depending on the position of the fragment within the output raster.
 
 
 

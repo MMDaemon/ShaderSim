@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using ShaderRenderer;

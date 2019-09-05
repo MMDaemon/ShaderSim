@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using ShaderUtils.Mathematics;
+﻿using ShaderUtils.Mathematics;
 
 // ReSharper disable InconsistentNaming
 

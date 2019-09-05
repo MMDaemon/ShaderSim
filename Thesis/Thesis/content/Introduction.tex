@@ -9,11 +9,11 @@ To introduce the content of this work the concepts of debugging and the behavior
 
 "Debugging is the process of locating and removing faults in computer programs" according to \myCite{Collins_debugging.2014}. The steps that are part of the debugging process are reproducing the problem, identifying the source of the problem and fixing the problem. All of these steps can be done manually but there are ways to improve and accelerate this process.
 
-It is possible to write a program with formal verificattion. Here the program is based on a mathematical proof ensuring its correctness. For these programs debugging is not necessary but formal verification has its limits with porgrams getting too complex. \myCite{bolton2013using}
+It is possible to write a program with formal verification. Here the program is based on a mathematical proof ensuring its correctness. For these programs debugging is not necessary but formal verification has its limits with programs getting too complex. \myCite{bolton2013using}
 
 For debugging, to find problems there is the option of writing automated tests, inserting debug outputs on the console into the source code or writing states into log files. This enables the programmer to find anomalies before, while and after running the program.
 
-When a way is found to reproduce the problem, to find the source of it the manual way is to increase the amount of debug outputs around the problematic part of the code and confine the point in the code at which the error occurs.
+When a way is found to reproduce the problem, to find the source of it, the manual way is to increase the amount of debug outputs around the problematic part of the code and confine the point in the code at which the error occurs.
 
 "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?" according to \myCite{Kernighan.1982}. As this states, debugging is a quite exhausting and time consuming task. For that reason for most programming languages there are tools to aid the programmer to narrow down the source of the bug with following methods:
 
@@ -33,16 +33,16 @@ When the source of the problem is found the final step of fixing the problem is 
 
 \section{Explanation of shaders in the graphics pipeline}
 
-A shader is a program running on the GPU thereby mostly running as part of the graphics pipeline.\myCite{Khronos_shader.2019} The exception for this behavior is the compute shader which is independent from the graphics pipeline.\myCite{Khronos_compute.2019}
+A shader is a program running on the GPU thereby mostly running as part of the graphics pipeline.\myCite{Wright.2007} The exception for this behavior is the compute shader which is independent from the graphics pipeline.\myCite{Shreiner.2013}
 
-The main use of the graphics pipeline is to generate an graphical output in form of a raster image out of geometry data. The GPU is a hardware specialized for this process leading to improved performance implementing it compared to running the same calculations on the CPU. This is shown in more detail in the paragraph at the end of this section.
+The main use of the graphics pipeline is to generate a graphical output in form of a raster image out of geometry data. The GPU is a hardware specialized for this process leading to improved performance implementing it compared to running the same calculations on the CPU. This is shown in more detail in the paragraph at the end of this section.
 
 The most used types of shaders on the graphics pipeline are the vertex shader, the tesselation shader, the geometry shader and the fragment shader. Their basic functionality is described in the following paragraph showing the sequence of events within the graphics pipeline.
 
 \paragraph{Structure of the graphics pipeline}
 \label{paragraph:pipeline}
 
-The graphics pipeline also known as rendering pipeline differentiates from framework to framework but the basic structure is identical.\myCite{Khronos_pipeline.2019} \myCite{Microsoft_pipeline.2018}
+The graphics pipeline also known as rendering pipeline differentiates from framework to framework but the basic structure is identical.\myCite{Shirley.2009}
 
 In the first stage the vertices are specified. The vertices are set up in an ordered list. By setting a primitive type it is determined how these vertices define the boundaries of primitives. Attributes are linked to the vertices adding data to them.
 
@@ -50,13 +50,16 @@ The second stage is the execution of the vertex shader for each defined vertex w
 
 After the vertex stage multiple, optional stages can occur. Examples for these are the Tesselation stage or the Geometry stage where additional shaders are executed to implement additional changes to the vertices or even remove or add vertices.
 
-In the following stage there are multiple optimization steps, the primitive assembly and the rasterization. The perspective divide and the viewport transformation are calculated. Through clipping, which is optional, primitives that overlap the edge of the viewing volume are split into multiple primitives and primitives outside the viewing volume are removed. Primitives are assembled according to the primitive type, so a list of primitives is constructed out of the list of vertices where each primitive is constructed out of multiple vertices. Face culling can occur as additional optimization removing primitives that face certain directions in the window space. The primitives are then rasterized into fragments within the raster of the render result. The data values linked to the vertices are set for each corresponding fregment by hardware based calculations.
+In the following stage there are multiple optimization steps, the primitive assembly and the rasterization. The perspective divide and the viewport transformation are calculated. Through clipping, which is optional, primitives that overlap the edge of the viewing volume are split into multiple primitives and primitives outside the viewing volume are removed. Primitives are assembled according to the primitive type, so a list of primitives is constructed out of the list of vertices where each primitive is constructed out of multiple vertices. Face culling can occur as additional optimization removing primitives that face certain directions in the window space. The primitives are then rasterized into fragments within the raster of the render result. The data values linked to the vertices are set for each corresponding fragment by hardware based calculations.
 
 Within the following fragment stage the fragment shader will be executed for each single fragment. The output data is calculated and attached to the corresponding fragment.
 
 After the fragment stage the output of the render process is calculated. For each sample there are multiple optional filters that can be activated to change which fragments are used within this stage. Examples for these filters are the scissor test where a fragment is ignored when it's pixel lies outside of the rectangle of the screen or the depth test where the fragments order is changed when its depth fulfils specific, user defined conditions compared to another fragment's depth within the same sample. After all active filters were executed the color blending happens where the color between multiple fragments within the same sample is calculated together with a specific blending operation. The final data is written to the framebuffer.
 
 The two most known uses of the graphics pipeline are within the graphics libraries OpenGL and Direct3D as shown in  \autoref{fig:pipeline_opengl} and \autoref{fig:pipeline_direct3d}
+
+\nocite{Khronos_pipeline.2019}
+\nocite{Microsoft_pipeline.2018}
 
 \begin{figure}[h!]
   \centering 
@@ -71,6 +74,8 @@ The two most known uses of the graphics pipeline are within the graphics librari
   \caption[Graphics pipeline by Direct3D \myCite{Microsoft_pipeline.2018}]{Graphics pipeline by Direct3D}
   \label{fig:pipeline_direct3d}
 \end{figure}
+
+\newpage
 
 \paragraph{Performance differences between graphics calculation on a GPU and a CPU}
 
@@ -118,7 +123,7 @@ The objective of this work is to create a general solution to enable debugging o
 	\item "1.0 second is about the limit for the user's flow of thought to stay uninterrupted, even though the user will notice the delay. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second, but the user does lose the feeling of operating directly on the data."
     \item "10 seconds is about the limit for keeping the user's attention focused on the dialogue. For longer delays, users will want to perform other tasks while waiting for the computer to finish, so they should be given feedback indicating when the computer expects to be done. Feedback during the delay is especially important if the response time is likely to be highly variable, since users will then not know what to expect."
 	\end{itemize}
-	Therefor the targeted performance for the user not having to wait to long should eneble the user to reach a debugging point within maximum 10 seconds.
+	Therefor the targeted performance for the user not having to wait to long should enable the user to reach a debugging point within maximum 10 seconds.
 \end{itemize}
 
 

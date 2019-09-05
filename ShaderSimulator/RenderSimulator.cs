@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using ShaderUtils;
-using ShaderUtils.Attributes;
 using ShaderUtils.Mathematics;
 
 namespace ShaderSimulator
