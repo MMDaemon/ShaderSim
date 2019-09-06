@@ -47,7 +47,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Implementation of the variable types}{18}{section*.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Simulating the pipeline}{19}{section*.17}
+\contentsline {paragraph}{\nonumberline Simulating the pipeline}{18}{section*.17}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Surrounding structure}{19}{section*.18}
 \defcounter {refsection}{0}\relax 
@@ -59,15 +59,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Translation functionality}{22}{section*.22}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Result of the simulation}{25}{section*.23}
+\contentsline {paragraph}{\nonumberline Result of the simulation}{23}{section*.23}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Debugging of the C\# shaders}{25}{section*.26}
+\contentsline {paragraph}{\nonumberline Debugging of the C\# shaders}{24}{section*.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Behavior when using non supported features in the C\# shader}{26}{section*.28}
+\contentsline {paragraph}{\nonumberline Behavior when using non supported features in the C\# shader}{24}{section*.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{29}{chapter.6}
+\contentsline {chapter}{\numberline {6}Conclusion}{27}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Possible modifications and improvements}{29}{section*.29}
+\contentsline {paragraph}{\nonumberline Possible modifications and improvements}{27}{section*.29}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\nonumberline Acronyms}{i}{chapter*.30}
 \defcounter {refsection}{0}\relax 

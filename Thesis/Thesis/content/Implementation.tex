@@ -2,7 +2,7 @@
 
 \chapter{Implementation}\label{cha:Implementation}
 
-In the project \myCite{project} an example to simulate shaders in the graphics pipeline is implemented. The simulation and the shaders are written in C\#. The shaders are translated to GLSL which is then run on the GPU within a OpenGL program.
+In the project \myCite{project} an example to simulate shaders in the graphics pipeline is implemented. The simulation and the shaders are written in C\#. The shaders are translated to GLSL which is then run on the GPU within an OpenGL program.
 
 C\# is supported by multiple debugging frameworks including the VisualStudio Debugger which has a broad spectrum of tools. \myCite{Microsoft_debugger.2019} GLSL is the main shader language for OpenGL which is one of the most used graphics frameworks. \myCite{Nvidia_opengl.2019}
 Another reason those languages and frameworks are chosen is that I personally am very accustomed to them.
@@ -10,16 +10,17 @@ Another reason those languages and frameworks are chosen is that I personally am
 By writing the code in C\# all debugging features coming with VisualStudio can be used for the simulated shaders.
 
 \paragraph{Features implemented}
+\label{paragraph:features}
 
 The project is a proof of concept where only parts of the functionality of shaders in the graphics pipeline are implemented. The implemented features suffice to run a basic example and evaluate the process as described in \autoref{cha:Evaluation}. In the following the different features needed to fulfill this requirement are listed. The necessary steps to implement them are shown in the subsequent paragraphs.
 
 \begin{itemize}
 \item Only the two types of shaders necessary to calculate a graphical output are supported. These are the vertex shader and the fragment shader which are processing the vertex and the fragment data within the graphics pipeline.
-\item For the primitives only the type triangle is supported.
+\item For the primitives only the type triangle is supported. Triangle is the most common primitive type and is sufficient to render examples.
 \item The result is an image with color outputs for each fragment. This is the usual output for a process in the graphics pipeline and used for the example.
 \item The viewport is always spanning the full output window to simplify the required calculations.
-\item The depth test is implemented to enable the rendering of basic 3D scenes.
-\item Only a limited set of variable types and methods to use in a shader are supported. Which ones are supported, is explained in more detail in a paragraph below.
+\item A depth test only rendering the fragment with the smalest depth is implemented to enable the rendering of basic 3D scenes.
+\item Only a limited set of variable types and methods to use in a shader are supported. Which ones are supported, is explained in more detail in the paragraph \nameref{paragraph:variableTypes}.
 \end{itemize}
 
 In the following paragraphs it is further explained how the translation and the simulation are implemented and which part of them is used to add these features.
@@ -31,15 +32,15 @@ A shader is written as a class, which inherits necessary features from a base cl
 The base class "Shader" has following features:
 \begin{itemize}
 \item An abstract "Main" function which acts as the entry point for each shader and has to be implemented in the different shaders.
-\item an implementation of the different mathematical functions necessary for the basic examples.
-\item A method which allows to set the value of a property within the shader class by passing its name as a string and the value as a generic type. The properties are found, and the value is set by accessing it via Reflection. This method also gets an attribute type to be able to check if the property has a specific custom attribute attached to it. This is used to differentiate between a property emulating a "in" or a "uniform" variable.
+\item An implementation of the different mathematical functions necessary for the basic examples.
+\item A method which allows to set the value of a property within the shader class by passing its name as a string and the value as a generic type. The properties are found, and the value is set by accessing it via Reflection. To differentiate between a property emulating a "in" or a "uniform" variable this  method also gets an attribute type to be able to check if the property has a specific custom attribute attached to it.
 \item A method to return the names and values of all properties having a custom attribute of the type "OutAttribute" attached to them. These properties are found by using Reflection.
 \end{itemize}
 
 To implement the different behaviors of a vertex and a fragment shader, the resulting shaders are not directly inheriting the Shader class but one of two additional abstract classes implementing the base class "Shader":
 \begin{itemize}
-\item The "VertexShader" class having an additional property named "Position" to emulate the built-in variable "gl\_Position" GLSL has \myCite{Shreiner.2013}. This ensures the vertex shader to always return a position value for the output vertex.
-\item The "fragmentShader" class having an additional property named "Color" with a "OutAttribute" attached to it so there is always a Color variable to draw the fragments.
+\item The "VertexShader" class having an additional property named "Position" to emulate the built-in GLSL variable "gl\_Position" GLSL has \myCite{Shreiner.2013}. This ensures the vertex shader always returns a position value for the output vertex.
+\item The "fragmentShader" class having an additional property named "Color" with an "OutAttribute" attached to it so there is always a Color variable to draw the fragments.
 \end{itemize}
 
 \paragraph{Translation of the shader class}
@@ -48,31 +49,22 @@ The shader class is contained within a single file. To translate it, the path to
 
 The syntax for different nodes is implemented manually for these node types.
 
-For each identifier within the nodes of the syntax tree, it is checked if a "TranslationAttribute" defining a term to replace it with exists. If this is not the case, the identifier will be directly transferred to the shader code.
-
-Within the C\# code the different parts can have a "TranslationAttribute" attached to them containing a string with the term that this part should be replaced when being translated.
+For each identifier within the nodes of the syntax tree, it is checked if a "TranslationAttribute" defining a term to replace it with exists. If this is not the case, the identifier will be directly transferred to the shader code. 
 
 There are special patterns in the GLSL code that have no direct equivalent within C\#. The following solutions are within the project:
 \begin{itemize}
-\item Each GLSL shader has a line at the top defining its version. This line is simply added at the beginning of each translated shader and not emulated within the C\# version of the shader.
+\item Each GLSL shader has a line at the top defining its version. This line is simply added at the beginning of each translated shader and not emulated within the C\# version of the shader. The version cosen in the example is the version 4.3 because the shaders in the example are known to work with this version.
 \item Each variable within a shader can have an accessor defining if it is a writable attribute, a readable attribute or a uniform variable. This behavior is mimicked by having properties in the C\# shader class that can have one of the three custom attribute classes "InAttribure", "OutAttribute" or "UniformAttribute" attached to them. This attribute is replaced by the corresponding "in", "out" or "uniform" tag when being translated to GLSL.
 \end{itemize}
 
 \paragraph{Implementation of the variable types}
+\label{paragraph:variableTypes}
 
 To run the shader within the pipeline, the code within it has to be functional. For this reason the different variable types with their functionality have to be implemented in C\#. For this project the implementation is limited on the variable types "vec2", "vec3", "vec4" and "mat4". For each of these a equivalent is implemented. By implementing them as structs instead of classes, the value based behavior they have in the GLSL code is reconstructed. These structs are implemented based on float values like their GLSL counterparts. The different forms of accessing their values are implemented in the form of properties and the necessary operators for the mathematical calculations with them are added.
 
 \paragraph{Simulating the pipeline}
 
-The stages are implemented with the functionalities described in \autoref{section:contribution_simulating}.
-
-The application is ment to be a simple example for debugging basic shaders and thereby does not support all features. Following limitations are in the project:
-\begin{itemize}
-\item The primitive type is hardcoded for the use of triangle primitives only. Triangle is the most used primitive type and is sufficient to render working examples.
-\item The application always runs for a default viewport spanning the whole output size of the application and does not implement viewport transformation.
-\item For the evaluation of the fragments only the depth buffer and the use of depth filtering are implemented for handling basic 3D applications.
-\item The fragment shader always returns a color value so the application always has a graphical output.
-\end{itemize}
+The stages are implemented with the functionalities described in \autoref{section:contribution_simulating}. Thereby the features listed in paragraph \nameref{paragraph:features} are implemented.
 
 Within the pipeline the attributes and uniforms for the shaders are set and the output values gained by using the methods implemented within the base "Shader" class. The exception is the "Position" property of the vertex shader which is accessed directly and used for the interpolation within the pipeline.
 
@@ -91,11 +83,11 @@ Within the render loop the data for the render process is generated and then eit
 In this paragraph a list of features not implemented in the project is presented. For each of these features the reason why they are not implemented and a basic concept for a possible way to implement it are given:
 
 \begin{itemize}
-\item In addition to the two shader types supported in the project there are other types of shaders like the tesselation shader and the geometry shader which can implement further manipulation or addition of vertices. These were left out in the project because implementing their support is not necessary for the example application and would just inflate the code of the simulation. For implementing them corresponding sub classes of the class "Shader" with the respective inputs, outputs and usually hardware implemented functionality would be implemented and their execution would be added to the simulated pipeline.
+\item In addition to the two shader types supported in the project there are other types of shaders like the tesselation shader and the geometry shader which can implement further manipulation, removal and addition of vertices. These were left out in the project because implementing their support is not necessary for the example application and would just inflate the code of the simulation. For implementing them corresponding sub classes of the class "Shader" with the respective inputs, outputs and usually hardware implemented functionality would be implemented and their execution would be added to the simulated pipeline.
 \item Other primitive types than the triangle type can be supported by expanding the primitive assembly. In the project only meshes consisting triangles were rendered, therefore this was not necessary.
 \item To enable the result being something different than an image consisting of a raster of color data or having additional data outputs a way to return all output values of the fragment shader in a raster to be used after the execution of the simulated pipeline would have to be added. This is not implemented because the presented example only produces an image as output.
 \item To support rendering in a specified viewport an option to define a viewport and the viewport transformation within the pipeline have to be added to the simulation.
 \item More evaluation types for the fragments than the depth test are not implemented. If features like the use of stencils with a stencil buffer or blending are desired these can be implemented after the execution of the fragment shader.
-\item If more variable types and methods are desired to be available to use for coding a shader their equivalents have to be implemented for the simulation. Not all methods and all variable types are implemented for the example to reduce the time needed for the implementation.
+\item If more variable types and methods in the shader are desired, their equivalents have to be implemented for the simulation. Not all methods and all variable types are implemented for the example to reduce the time needed for the implementation.
 \end{itemize}
 

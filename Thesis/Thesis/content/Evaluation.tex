@@ -19,33 +19,23 @@ The example for the fragment shader receives the position, the normal and the in
 
 \paragraph{Translation functionality}
 
-For the chosen example shaders, all parts of the C\# shader code are translated to a functioning shader in GLSL. The code examples in \autoref{lst:sharpVertex},\autoref{lst:outputVertex}, \autoref{lst:sharpFragment} and \autoref{lst:outputFragment} show the shaders written in C\# and their respecitve translation in GLSL. As seen in the vertex shader all parts of the C\# code have their equivalent in the shader code. For the fragment shader the result has a output variable for the color in addition to this. This additional output is there because this output is implemented in the base class for a fragment shader shown in \autoref{lst:fragmentBase}. In addition to the translation of the existing parts in the C\# code the headline for the version number is added for both shaders in the translation process. In the example this version number is always set as "version 430 core".
+For the chosen example shaders, all parts of the C\# shader code are translated to a functioning shader in GLSL. The code examples in \autoref{lst:sharpVertex},\autoref{lst:outputVertex}, \autoref{lst:sharpFragment} and \autoref{lst:outputFragment} show shaders written in C\# and their respecitve translation in GLSL. As seen in the vertex shader all parts of the C\# code have their equivalent in the shader code. For the fragment shader the result has a output variable for the color in addition to this. This additional output exists because this output is implemented in the base class for a fragment shader shown in \autoref{lst:fragmentBase}. In addition to the translation of the existing parts in the C\# code the headline for the version number is added for both shaders in the translation process. In the example this version number is always set as "version 430 core".
 
 \begin{lstlisting}[caption = {Vertex shader written in C\#}, label = {lst:sharpVertex}]
-class LightedVertex : VertexShader
+class PassVertex : VertexShader
 {
-    [Uniform]
-    public Matrix4x4 Camera { private get; set; }
     [In]
     public Matrix4x4 InstanceTransformation { private get; set; }
     [In]
     public Vector3 Pos { private get; set; }
     [In]
-    public Vector3 Normal { private get; set; }
-    [In]
     public Vector4 Color { private get; set; }
     [Out]
     public Vector4 Col { get; private set; }
-    [Out]
-    public Vector3 WorldPos { get; private set; }
-    [Out]
-    public Vector3 N { get; private set; }
     
     public override void Main()
     {
-        WorldPos = (InstanceTransformation * new Vector4(Pos, 1)).XYZ;
-        N = (InstanceTransformation * new Vector4(Normal, 0)).XYZ;
-        Position = Camera * InstanceTransformation * new Vector4(Pos, 1);
+        Position = (InstanceTransformation * new Vector4(Pos, 1));
         Col = Color;
     }
 }
@@ -53,23 +43,19 @@ class LightedVertex : VertexShader
 
 \begin{lstlisting}[caption = {Vertex shader translated in GLSL}, label = {lst:outputVertex}]
 #version 430 core
-uniform mat4 Camera;
 in mat4 InstanceTransformation;
 in vec3 Pos;
-in vec3 Normal;
 in vec4 Color;
 out vec4 Col;
-out vec3 WorldPos;
-out vec3 N;
 
 void main()
 {
-        WorldPos = (InstanceTransformation * vec4(Pos, 1)).xyz;
-        N = (InstanceTransformation * vec4(Normal, 0)).xyz;
-        gl_Position = Camera * InstanceTransformation * vec4(Pos, 1);
+        gl_Position = (InstanceTransformation * vec4(Pos, 1));
         Col = Color;
 }
 \end{lstlisting}
+
+\newpage
 
 \begin{lstlisting}[caption = {Base class of a fragment shader in C\#}, label = {lst:fragmentBase}]
 public abstract class FragmentShader : Shader
@@ -80,45 +66,14 @@ public abstract class FragmentShader : Shader
 \end{lstlisting}
 
 \begin{lstlisting}[caption = {Fragment shader written in C\#}, label = {lst:sharpFragment}]
-class LightedFragment : FragmentShader
+class PassFragment : FragmentShader
 {
-    [Uniform]
-    public Vector3 CameraPosition { private get; set; }
-    [Uniform]
-    public Vector4 AmbientLightColor { private get; set; }
-    [Uniform]
-    public Vector4 LightColor { private get; set; }
-    [Uniform]
-    public Vector3 LightDirection { private get; set; }
-
     [In]
     public Vector4 Col { private get; set; }
-    [In]
-    public Vector3 WorldPos { private get; set; }
-    [In]
-    public Vector3 N { private get; set; }
-
-    private float Lambert(Vector3 n, Vector3 l)
-    {
-        return Max(0, Dot(n, l));
-    }
-
-    private float Specular(Vector3 n, Vector3 l, Vector3 v, float shininess)
-    {
-        Vector3 r = Reflect(-l, n);
-        float illuminated = Step(Dot(n, l), 0);
-        return Pow(Max(0, Dot(r, v)), shininess) * illuminated;
-    }
-
+    
     public override void Main()
-        {
-        Vector3 normal = Normalize(N);
-
-        Vector4 ambient = AmbientLightColor * Col;
-        Vector4 diffuse = Col * LightColor * Lambert(normal, -LightDirection);
-        Vector4 specular = LightColor * Specular(normal, LightDirection, Normalize(CameraPosition - WorldPos), 99.9f);
-
-    Color = ambient + diffuse + specular;
+    {
+        Color = Col;
     }
 }
 \end{lstlisting}
@@ -126,33 +81,11 @@ class LightedFragment : FragmentShader
 \begin{lstlisting}[caption = {Fragment shader translated in GLSL}, label = {lst:outputFragment}]
 #version 430 core
 out vec4 Color;
-uniform vec3 CameraPosition;
-uniform vec4 AmbientLightColor;
-uniform vec4 LightColor;
-uniform vec3 LightDirection;
 in vec4 Col;
-in vec3 WorldPos;
-in vec3 N;
-
-float Lambert(vec3 n, vec3 l)
-{
-        return max(0, dot(n, l));
-}
-
-float Specular(vec3 n, vec3 l, vec3 v, float  shininess)
-{
-        vec3 r = reflect(-l, n);
-        float  illuminated = step(dot(n, l), 0);
-        return pow(max(0, dot(r, v)), shininess) * illuminated;
-}
 
 void main()
 {
-        vec3 normal = normalize(N);
-        vec4 ambient = AmbientLightColor * Col;
-        vec4 diffuse = Col * LightColor * Lambert(normal, -LightDirection);
-        vec4 specular = LightColor * Specular(normal, LightDirection, normalize(CameraPosition - WorldPos), 99.9);
-        Color = ambient + diffuse + specular;
+        Color = Col;
 }
 \end{lstlisting}
 
@@ -176,7 +109,7 @@ Running the translated GLSL shaders on the GPU with the example described above 
     \end{minipage}
 \end{figure}
 
-The only difference between rendering the translated shader in comparison to rendering the simulated version is the performance. As shown in \autoref{fig:perfCPU} rendering a single frame in the simulation on the CPU takes about 1500 ms while rendering a single frame on the GPU with the GLSL shaders takes only 0.0015 ms for this example. These values are gained while running the example on a Nvidia GTX970 as GPU and a Intel i7-6700K as CPU. But as described in \autoref{paragraph:objective} this is tolerable for the purpose of debugging.
+The only noticeable difference between rendering the translated shader in comparison to rendering the simulated version is the performance. As shown in \autoref{fig:perfCPU} rendering a single frame in the simulation on the CPU takes about 1500 ms while rendering a single frame on the GPU with the GLSL shaders takes only 0.0015 ms for this example. These values are gained while running the example on a Nvidia GTX970 as GPU and a Intel i7-6700K as CPU. But as described in \autoref{paragraph:objective} this is tolerable for the purpose of debugging.
 
 \begin{figure}[h!]
     \centering
@@ -198,9 +131,9 @@ The only difference between rendering the translated shader in comparison to ren
 
 The shaders written in C\# and running in the simulated graphics pipeline can be debugged as any other C\# code in VisualStudio.
 
-It is possible to set breakpoints and even add conditions to them. Setting such a condition could be used to debug a specific fragment or vertex. From these breakpoints it is possible to step through the code, inspect the variables and even navigating backwards through the call stack.
+It is possible to set breakpoints and add conditions to them. Setting such a condition could be used to debug a specific fragment or vertex. From these breakpoints it is possible to step through the code, inspect the variables and even navigating backwards through the call stack.
 
-In the example no exceptions are thrown but if any of the underlying methods would throw a exception visual studio would stop the execution and show the problem in the debugger.
+In the example no exceptions are thrown but if any of the underlying methods would throw a exception VisualStudio would stop the execution and show the problem in the debugger.
 
 Most of the debugging tools listed above can be seen in \autoref{fig:debugging}
 
@@ -215,6 +148,4 @@ Most of the debugging tools listed above can be seen in \autoref{fig:debugging}
 
 If the code for a non supported method or value type would be written in the C\# shader code the program would not compile and neither the simulation nor the translation would start.
 
-It would be possible to give the path of a file not used in the program as a shader to the translator. If this code would contain a C\# shader written in the correct syntax using methods of value types not supported in the example the translator would run and return a GLSL shader. The translator would simply keep the names of every method call and value type that is not defined by a "TranslationAttribute". If these kept names match the names of the methods and value types in GLSL the shader could be executed. If any of the names would not have a match in GLSL, the resulting code would be unusable.
-
-If the simulation part and the translation part get the same C\# code as the input shaders though, it would not compile at all or return the same output.
+It would be possible to give the path of a file not used in the project as a shader to the translator. If this code would contain a C\# shader written in the correct syntax using methods of value types not supported in the example the translator would run and return a GLSL shader. The translator would simply keep the names of every method call and value type that is not defined by a "TranslationAttribute". If these kept names match the names of the methods and value types in GLSL the shader could be executed. If any of the names would not have a match in GLSL, the resulting code would not be compilable.

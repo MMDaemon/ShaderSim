@@ -17,7 +17,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.4}Fragment shader written in C\#}{23}{lstlisting.5.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.5}Fragment shader translated in GLSL}{24}{lstlisting.5.5}
+\contentsline {lstlisting}{\numberline {5.5}Fragment shader translated in GLSL}{23}{lstlisting.5.5}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

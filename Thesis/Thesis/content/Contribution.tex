@@ -8,14 +8,14 @@ The proposed solution of this work is inspired by the approaches for compute sha
 
 To run the shader as usual on the GPU the shaders written in the source language is translated to the shader language and loaded on the hardware.
 
-To enable the functionality while debugging, the linking of the shaders and the steps in between the shaders on the graphics pipeline, usually already provided by the graphics hardware, will be simulated in the source language.
+To enable the functionality while debugging, the steps in between the shaders on the graphics pipeline, usually already provided by the graphics hardware, will be simulated in the source language.
 
 \section{Steps for translating the shader code}
 \label{section:contribution_translating}
 
-In most cases the access of attributes within a shader is done by getting its location from its name.\myCite{Lighthouse3d.2013} To directly access the variables, a way to translate the shader from the source language keeping the variable names is chosen. As explained in \autoref{section:translating} by directly translating the language without compiling it to intermediate stages all kinds of languages can be chosen as source languages and the variable names can easily be retained.
+In most cases the access of attributes within a shader is done by getting its location from its name.\myCite{Lighthouse3d.2013} Because of this it is advantageous to retain the variable names from the source language. As explained in \autoref{section:translating} by directly translating the language without compiling it to intermediate stages all kinds of languages can be chosen as source languages and the variable names can easily be retained.
 
-Shaders within the graphics pipeline have a special way of being structured so the input and output within their respective stage is flowing correctly through the shader. Because of this the code written in the source language ment to be translated to a shader should mimic the structure the shader language provides. This means when the shader language provides certain structures for input or output or a specific point of entry into the code an equivalent for these has to be given in the code written in the source language.
+Shaders within the graphics pipeline have a special structure, so the input and output within their respective stage is flowing correctly through the shader. Because of this the code written in the source language ment to be translated to a shader should mimic the structure the shader language provides. This means when the shader language provides certain structures for input or output or a specific point of entry into the code an equivalent for these has to be given in the code written in the source language.
 
 The translation is done by converting the source language into a syntax tree from which the syntax will be extracted in the shader language. Occurences of variable types also have to be translated to their correct equivalent.
 
@@ -31,7 +31,7 @@ It is determined which kinds of shaders should be able to be simulated and there
 \paragraph{Instance of a shader within the source language}
 
 A shader in the source language should be contained within a fixed structure like a class. Thereby the execution of the shader within the simulated pipeline is easier manageable compared to having to composite the shader out of multiple parts.
-As already mentioned in \autoref{section:contribution_translating} it is optimal to have the code of the shader mimic the structure of the shader in the original language. Not only does this simplify the translation process, but it is also furthers the implementation of interfaces for the shaders similar to the actual shaders in the pipeline. To achieve this, for each access point the regular shader has in the pipeline there is an equivalent in the simulation. The following things have to be given:
+As already mentioned in \autoref{section:contribution_translating} it is optimal to have the code of the shader mimic the structure of the shader in the original language. Not only does this simplify the translation process, but it is also benefits the implementation of interfaces for the shaders similar to the actual shaders in the pipeline. To achieve this, for each access point the regular shader has in the pipeline there is an equivalent in the simulation. The following things have to be given:
 \begin{itemize}
 \item The possibility to set variables as attributes or uniforms
 \item The function starting the execution of the shader functionality

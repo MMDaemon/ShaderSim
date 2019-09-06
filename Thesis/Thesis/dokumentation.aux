@@ -86,6 +86,7 @@
 \abx@aux@page{5}{2}
 \abx@aux@page{6}{2}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {1.2}Explanation of shaders in the graphics pipeline}{2}{section.1.2}}
+\newlabel{section:explanationShadersPipeline}{{1.2}{2}{Explanation of shaders in the graphics pipeline}{section.1.2}{}}
 \abx@aux@page{7}{2}
 \abx@aux@page{8}{2}
 \newlabel{paragraph:pipeline}{{1.2}{2}{Structure of the graphics pipeline}{section*.3}{}}
@@ -105,9 +106,10 @@
 \newlabel{fig:pipeline_opengl}{{1.1}{4}{Graphics pipeline by OpenGL \myCite {Khronos_pipeline.2019}}{figure.caption.4}{}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Graphics pipeline by Direct3D  [\cite {Microsoft_pipeline.2018}] }}{4}{figure.caption.5}}
 \newlabel{fig:pipeline_direct3d}{{1.2}{4}{Graphics pipeline by Direct3D \myCite {Microsoft_pipeline.2018}}{figure.caption.5}{}}
+\newlabel{paragraph:performanceDif}{{1.2}{4}{Performance differences between graphics calculation on a GPU and a CPU}{section*.6}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Performance differences between graphics calculation on a GPU and a CPU}{4}{section*.6}}
 \abx@aux@page{10}{4}
-\BKM@entry{id=4,dest={73656374696F6E2E312E33},srcline={98}}{312E332050726F626C656D207769746820646562756767696E67207368616465727320696E2074686520677261706869637320706970656C696E65}
+\BKM@entry{id=4,dest={73656374696F6E2E312E33},srcline={102}}{312E332050726F626C656D207769746820646562756767696E67207368616465727320696E2074686520677261706869637320706970656C696E65}
 \citation{Jones.2019}
 \abx@aux@cite{Jones.2019}
 \abx@aux@segm{0}{0}{Jones.2019}
@@ -120,6 +122,12 @@
 \citation{Fox.2017}
 \abx@aux@cite{Fox.2017}
 \abx@aux@segm{0}{0}{Fox.2017}
+\citation{Nvidia_debug.2019}
+\abx@aux@cite{Nvidia_debug.2019}
+\abx@aux@segm{0}{0}{Nvidia_debug.2019}
+\citation{Microsoft_debug.2016}
+\abx@aux@cite{Microsoft_debug.2016}
+\abx@aux@segm{0}{0}{Microsoft_debug.2016}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Screenshot of triangle test render}}{5}{figure.caption.7}}
 \newlabel{fig:triangleSample}{{1.3}{5}{Screenshot of triangle test render}{figure.caption.7}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {1.3}Problem with debugging shaders in the graphics pipeline}{5}{section.1.3}}
@@ -127,26 +135,20 @@
 \abx@aux@page{11}{5}
 \abx@aux@page{12}{5}
 \abx@aux@page{13}{5}
-\citation{Nvidia_debug.2019}
-\abx@aux@cite{Nvidia_debug.2019}
-\abx@aux@segm{0}{0}{Nvidia_debug.2019}
-\citation{Microsoft_debug.2016}
-\abx@aux@cite{Microsoft_debug.2016}
-\abx@aux@segm{0}{0}{Microsoft_debug.2016}
-\BKM@entry{id=5,dest={73656374696F6E2E312E34},srcline={110}}{312E34204F626A656374697665206F66206372656174696E6720612067656E6572616C20736F6C7574696F6E20666F7220646562756767696E67207368616465727320696E2074686520677261706869637320706970656C696E65}
+\abx@aux@page{14}{5}
+\BKM@entry{id=5,dest={73656374696F6E2E312E34},srcline={113}}{312E34204F626A656374697665206F66206372656174696E6720612067656E6572616C20736F6C7574696F6E20666F7220646562756767696E67207368616465727320696E2074686520677261706869637320706970656C696E65}
 \citation{Franz.2006}
 \abx@aux@cite{Franz.2006}
 \abx@aux@segm{0}{0}{Franz.2006}
 \citation{Nielson.1993}
 \abx@aux@cite{Nielson.1993}
 \abx@aux@segm{0}{0}{Nielson.1993}
-\abx@aux@page{14}{6}
 \abx@aux@page{15}{6}
 \abx@aux@page{16}{6}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {1.4}Objective of creating a general solution for debugging shaders in the graphics pipeline}{6}{section.1.4}}
 \newlabel{paragraph:objective}{{1.4}{6}{Objective of creating a general solution for debugging shaders in the graphics pipeline}{section.1.4}{}}
 \abx@aux@page{17}{6}
-\abx@aux@page{18}{7}
+\abx@aux@page{18}{6}
 \FN@pp@footnotehinttrue 
 \BKM@entry{id=6,dest={636861707465722E32},srcline={3}}{322052656C6174656420576F726B}
 \BKM@entry{id=7,dest={73656374696F6E2E322E31},srcline={4}}{322E31204578697374696E67206D6574686F647320666F7220646562756767696E67207368616465727320696E2074686520677261706869637320706970656C696E65}
@@ -281,14 +283,16 @@
 \abx@aux@page{40}{16}
 \abx@aux@page{41}{16}
 \abx@aux@page{42}{16}
+\newlabel{paragraph:features}{{4}{16}{Features implemented}{section*.13}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Features implemented}{16}{section*.13}}
 \citation{Shreiner.2013}
 \abx@aux@segm{0}{0}{Shreiner.2013}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Structure of a shader in C\#}{17}{section*.14}}
 \abx@aux@page{43}{17}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Translation of the shader class}{18}{section*.15}}
+\newlabel{paragraph:variableTypes}{{4}{18}{Implementation of the variable types}{section*.16}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Implementation of the variable types}{18}{section*.16}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Simulating the pipeline}{19}{section*.17}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Simulating the pipeline}{18}{section*.17}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Surrounding structure}{19}{section*.18}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Ommited features}{19}{section*.19}}
 \FN@pp@footnotehinttrue 
@@ -310,29 +314,29 @@
 \@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.3}Base class of a fragment shader in C\#}{23}{lstlisting.5.3}}
 \newlabel{lst:sharpFragment}{{5.4}{23}{Fragment shader written in C\#}{lstlisting.5.4}{}}
 \@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.4}Fragment shader written in C\#}{23}{lstlisting.5.4}}
-\newlabel{lst:outputFragment}{{5.5}{24}{Fragment shader translated in GLSL}{lstlisting.5.5}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.5}Fragment shader translated in GLSL}{24}{lstlisting.5.5}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Result of the simulation}{25}{section*.23}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Screenshot of example scene rendered with translated shaders}}{25}{figure.caption.24}}
-\newlabel{fig:translated}{{5.2}{25}{Screenshot of example scene rendered with translated shaders}{figure.caption.24}{}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Screenshot of example scene rendered with C\# shaders on simulated pipeline}}{25}{figure.caption.24}}
-\newlabel{fig:simulated}{{5.3}{25}{Screenshot of example scene rendered with C\# shaders on simulated pipeline}{figure.caption.24}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Debugging of the C\# shaders}{25}{section*.26}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Screenshot of console output rendering the example with C\# shaders on simulated pipeline}}{26}{figure.caption.25}}
-\newlabel{fig:perfCPU}{{5.4}{26}{Screenshot of console output rendering the example with C\# shaders on simulated pipeline}{figure.caption.25}{}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Screenshot of console output rendering the example with translated shaders}}{26}{figure.caption.25}}
-\newlabel{fig:perfGPU}{{5.5}{26}{Screenshot of console output rendering the example with translated shaders}{figure.caption.25}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Behavior when using non supported features in the C\# shader}{26}{section*.28}}
+\newlabel{lst:outputFragment}{{5.5}{23}{Fragment shader translated in GLSL}{lstlisting.5.5}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.5}Fragment shader translated in GLSL}{23}{lstlisting.5.5}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Result of the simulation}{23}{section*.23}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Screenshot of example scene rendered with translated shaders}}{24}{figure.caption.24}}
+\newlabel{fig:translated}{{5.2}{24}{Screenshot of example scene rendered with translated shaders}{figure.caption.24}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Screenshot of example scene rendered with C\# shaders on simulated pipeline}}{24}{figure.caption.24}}
+\newlabel{fig:simulated}{{5.3}{24}{Screenshot of example scene rendered with C\# shaders on simulated pipeline}{figure.caption.24}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Debugging of the C\# shaders}{24}{section*.26}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Behavior when using non supported features in the C\# shader}{24}{section*.28}}
 \FN@pp@footnotehinttrue 
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Screenshot of debug screen within VisualStudio}}{28}{figure.caption.27}}
-\newlabel{fig:debugging}{{5.6}{28}{Screenshot of debug screen within VisualStudio}{figure.caption.27}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Screenshot of console output rendering the example with C\# shaders on simulated pipeline}}{25}{figure.caption.25}}
+\newlabel{fig:perfCPU}{{5.4}{25}{Screenshot of console output rendering the example with C\# shaders on simulated pipeline}{figure.caption.25}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Screenshot of console output rendering the example with translated shaders}}{25}{figure.caption.25}}
+\newlabel{fig:perfGPU}{{5.5}{25}{Screenshot of console output rendering the example with translated shaders}{figure.caption.25}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Screenshot of debug screen within VisualStudio}}{26}{figure.caption.27}}
+\newlabel{fig:debugging}{{5.6}{26}{Screenshot of debug screen within VisualStudio}{figure.caption.27}{}}
 \BKM@entry{id=15,dest={636861707465722E36},srcline={3}}{3620436F6E636C7573696F6E}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{29}{chapter.6}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{27}{chapter.6}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{cha:Conclusion}{{6}{29}{Conclusion}{chapter.6}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Possible modifications and improvements}{29}{section*.29}}
+\newlabel{cha:Conclusion}{{6}{27}{Conclusion}{chapter.6}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{\nonumberline Possible modifications and improvements}{27}{section*.29}}
 \FN@pp@footnotehinttrue 
 \BKM@entry{id=16,dest={636861707465722A2E3330},srcline={3}}{4163726F6E796D73}
 \FN@pp@footnotehinttrue 
@@ -402,7 +406,7 @@
 \abx@aux@page{76}{6}
 \abx@aux@page{77}{6}
 \abx@aux@page{78}{6}
-\abx@aux@page{79}{7}
+\abx@aux@page{79}{6}
 \abx@aux@page{80}{7}
 \abx@aux@page{81}{7}
 \abx@aux@page{82}{7}
@@ -434,7 +438,6 @@
 \abx@aux@defaultrefcontext{0}{Khronos_pipeline.2019}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{Lighthouse3d.2013}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{Magyar.2017}{nyt/global//global/global}
-\abx@aux@defaultrefcontext{0}{project}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{Microsoft_debug.2016}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{Microsoft_pipeline.2018}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{Microsoft_debugger.2019}{nyt/global//global/global}
@@ -445,6 +448,7 @@
 \abx@aux@defaultrefcontext{0}{Nvidia_opengl.2019}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{Nvidia_Nsight}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{Shirley.2009}{nyt/global//global/global}
+\abx@aux@defaultrefcontext{0}{project}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{Wright.2007}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{scherzer_visualstudio.2019}{nyt/global//global/global}
 \abx@aux@defaultrefcontext{0}{scherzer_npp.2019}{nyt/global//global/global}
