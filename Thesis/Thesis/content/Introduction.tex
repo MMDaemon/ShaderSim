@@ -4,18 +4,20 @@
 
 To introduce the content of this work the concepts of debugging and the behavior of shaders on the graphics pipeline are explained. After that the problem of debugging shaders in the graphics pipeline is shown and the objectives of this work are presented.
 
+In this work a basic understanding of computer graphics and the related terminology is expected.
+
 \section{Explanation of debugging}
 \label{paragraph:debuging}
 
-"Debugging is the process of locating and removing faults in computer programs" according to \myCite{Collins_debugging.2014}. The steps that are part of the debugging process are reproducing the problem, identifying the source of the problem and fixing the problem. All of these steps can be done manually but there are ways to improve and accelerate this process.
+"Debugging is the process of locating and removing faults in computer programs" according to \myCite{Collins_debugging.2014}. The steps that are part of the debugging process are reproducing the problem, identifying the source of the problem and fixing the problem. All of these steps can be done manually but there are methods to improve and accelerate this process.
 
 It is possible to write a program with formal verification, where the program is based on a mathematical proof ensuring its correctness. For these programs debugging is not necessary but formal verification has its limits with programs getting too complex. \myCite{bolton2013using}
 
-For debugging, to find problems there is the option of writing automated tests, inserting debug outputs on the console into the source code or writing states into log files. This enables the programmer to find anomalies before, while and after running the program.
+For debugging, to find problems there are the options of writing automated tests, inserting debug outputs on the console into the source code or writing states into log files. This enables the programmer to find anomalies before, while and after running the program.
 
-Once a way is found to reproduce the problem, the source of this problem needs to be uncovered. The manual way of doing this, is to increase the amount of debug outputs around the problematic part of the code until the bug is found.
+Once a problem is reproducible, the source of this problem needs to be uncovered. The manual way of doing this, is to increase the amount of debug outputs around the problematic part of the code until the bug is found.
 
-"Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?" according to \myCite{Kernighan.1982}. As this states, debugging is a quite exhausting and time consuming task. For that reason, tools exist to aid the programmer to narrow down the source of the bug for most programming languages. Those tools do this with following methods:
+"Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?" according to \myCite{Kernighan.1982}. As this states, debugging is a quite exhausting and time consuming task. For that reason, tools exist to aid the programmer in narrowing down the source of the bug for most programming languages. Those tools do this with following methods:
 
 \begin{itemize}
 
@@ -29,7 +31,7 @@ Once a way is found to reproduce the problem, the source of this problem needs t
 
 \end{itemize}
 
-After the programmer finds the problem manually or with the aid of debug tools he can correct the code.
+After the programmer finds the problem manually or with the aid of debug tools the code can be corrected.
 
 \section{Explanation of shaders in the graphics pipeline}
 \label{section:explanationShadersPipeline}
@@ -43,23 +45,23 @@ Common types of shaders on the graphics pipeline are the vertex shader, the tess
 \paragraph{Structure of the graphics pipeline}
 \label{paragraph:pipeline}
 
-The graphics pipeline, also known as rendering pipeline, differentiates from framework to framework but the basic structure of the pipeline within each of them is identical.\myCite{Shirley.2009}
+The graphics pipeline, also known as rendering pipeline, differs from framework to framework but the basic structure of the pipeline within each of them is identical.\myCite{Shirley.2009}
 
 In the first stage the vertices are specified and set up in an ordered list. Attributes can be linked to the vertices adding data to them.
 
 In the second stage the vertex shader is executed for each defined vertex with its associated data. For each vertex the vertex shader generates an output vertex with data.
 
-After the vertex stage multiple, optional stages can occur. Examples for these are the tesselation stage or the geometry stage where additional shaders are executed.
+After the vertex stage multiple optional stages can occur. Examples for these are the tesselation stage or the geometry stage where additional shaders are executed.
 
-In the following stage there are multiple optimization steps folowed by the primitive assembly and the rasterization. The perspective divide and the viewport transformation are calculated. Through clipping, which is optional, primitives that overlap the edge of the viewing volume are split into multiple primitives and primitives outside the viewing volume are removed. Primitives are assembled according to the primitive type, so a list of primitives is constructed out of the list of vertices where each primitive is constructed out of multiple vertices. Face culling can occur as additional optimization removing primitives that face certain directions in the window space. The primitives are then rasterized into fragments within the raster of the render result. The data values linked to the vertices are set for each corresponding fragment by hardware based calculations.
+In the following stage there are multiple optimization steps followed by the primitive assembly and the rasterization. The perspective divide and the viewport transformation are calculated. Through clipping, which is optional, primitives that overlap the edge of the viewing volume are split into multiple primitives and primitives outside the viewing volume are removed. Primitives are assembled according to the primitive type, so a list of primitives is constructed out of the list of vertices where each primitive is constructed out of multiple vertices. Face culling can occur as additional optimization that removes primitives which face certain directions in the window space. The primitives are then rasterized into fragments within the raster of the render result. The data values linked to the vertices are set for each corresponding fragment by hardware based calculations.
 
 The fragment stage executes the fragment shader for each single fragment. The output data is calculated and attached to the corresponding fragment.
 
-After the fragment stage the output of the render process is calculated. For each sample there are multiple optional filters that can be activated to change which fragments are used within this stage. Examples for these filters are the scissor test where a fragment is ignored when it's pixel lies outside of the rectangle of the screen or the depth test where the fragments order is changed when its depth fulfils specific, user defined conditions compared to another fragment's depth within the same sample. After all active filters were executed the color blending happens where the color between multiple fragments within the same sample is calculated with a specific blending operation.
+After the fragment stage the output of the render process is calculated. For each sample there are multiple optional filters that can be activated to change which fragments are used within this stage. Examples for these filters are the scissor test where a fragment is ignored when its pixel lies outside of the rectangle of the screen or the depth test where the fragment's order is changed when its depth fulfils specific, user defined conditions compared to another fragment's depth within the same sample. After all active filters have been executed the color blending is executed where the color between multiple fragments within the same sample is calculated with a specific blending operation.
 
 The final data is written to the framebuffer.
 
-The two most commom implementations of the graphics pipeline are within the graphics libraries OpenGL and Direct3D. Their definitions of the graphics pipeline within them are shown in  \autoref{fig:pipeline_opengl} and \autoref{fig:pipeline_direct3d}
+The two most commom implementations of the graphics pipeline are found within the graphics libraries OpenGL and Direct3D. Their definitions of the graphics pipeline within them are shown in  \autoref{fig:pipeline_opengl} and \autoref{fig:pipeline_direct3d}
 
 \nocite{Khronos_pipeline.2019}
 \nocite{Microsoft_pipeline.2018}
@@ -86,9 +88,9 @@ The two most commom implementations of the graphics pipeline are within the grap
 The main advantage in using shaders in the graphics pipeline on the GPU lies in the increased performance compared to the CPU.
 This correlation can be observed if the project, which was implemented for this work \myCite{project}, is analyzed.
 
-The chosen test case consists of a simple triangle covering half the space of a window with 640 by 480 pixels as shown in \autoref{fig:triangleSample}. The test is run on a Nvidia GTX970 as GPU and a Intel i7-6700K as CPU. It has to be noted though that there are ways to further optimize the calculation on the CPU. For test the program is not multi threaded and is running in a JIT compiler. But it should be enough to serve as a rough example for the difference in performance.
+The chosen test case consists of a simple triangle covering half the space of a window with a resolution of 640 by 480 as shown in \autoref{fig:triangleSample}. The test is run on a Nvidia GTX970 as GPU and a Intel i7-6700K as CPU. It has to be noted though that there are ways to further optimize the calculation on the CPU. For this test the program is not multi threaded and is running in a JIT (Just in Time) compiler. But it should be enough to serve as a rough example for the difference in performance.
 
-Rendering the described image on the GPU takes about 0.0015 ms while calculating the same output in the CPU with the implemented test takes about 800 ms. The rasterizing step with calculating the data for all fragment from the data of the vertices within the corresponding primitives alone takes over 300 ms in this test.
+Rendering the described image on the GPU takes about 0.0015 ms while calculating the same output in the CPU with the implemented test takes about 800 ms. The rasterizing step with calculating the data for all fragments from the data of the vertices within the corresponding primitives alone takes over 300 ms in this test.
 
 As shown with this test it is desirable to use the graphics pipeline on the GPU.
 
@@ -102,9 +104,9 @@ As shown with this test it is desirable to use the graphics pipeline on the GPU.
 \section{Problem with debugging shaders in the graphics pipeline}
 \label{section:problems}
 
-As established in \autoref{section:explanationShadersPipeline} there are advantages in the use of shaders on the GPU. There are different tools to support with the implementation of shaders.\myCite{Jones.2019}\myCite{scherzer_visualstudio.2019}\myCite{scherzer_npp.2019} For debugging shaders on the graphics pipeline though there are no general solutions that aid the user in the process.
+As established in \autoref{section:explanationShadersPipeline} there are advantages in the use of shaders on the GPU. There are different tools to support in implementing shaders.\myCite{Jones.2019}\myCite{scherzer_visualstudio.2019}\myCite{scherzer_npp.2019} For debugging shaders on the graphics pipeline though there are no general solutions that aid the user in the process.
 
-While most CPUs are very broad in their functionality and support debugging by itself a GPU is more specialized in the way it functions and usually does not have the option to pause the code to enable inspections at runtime and does not even have access to a console or logger to write states into.\myCite{Fox.2017}
+While most CPUs are very broad in their functionality and support debugging by themselves a GPU is more specialized in the way it functions and usually does not have the option to pause the code to enable inspections at runtime and does not even have access to a console or logger to write states into.\myCite{Fox.2017}
 
 As explained in more detail in \autoref{section:debuggingMethods_drivers} it is possible to enable debugging on the GPU with specialized drivers for specific hardware.\myCite{Nvidia_debug.2019}\myCite{Microsoft_debug.2016}
 
@@ -126,7 +128,7 @@ The objective of this work is to create a general solution to enable debugging o
 	\item "1.0 second is about the limit for the user's flow of thought to stay uninterrupted, even though the user will notice the delay. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second, but the user does lose the feeling of operating directly on the data."
     \item "10 seconds is about the limit for keeping the user's attention focused on the dialogue. For longer delays, users will want to perform other tasks while waiting for the computer to finish, so they should be given feedback indicating when the computer expects to be done. Feedback during the delay is especially important if the response time is likely to be highly variable, since users will then not know what to expect."
 	\end{itemize}
-	Therefor the targeted performance should enable the user to reach a debugging point within maximum 10 seconds.
+	Therefore the targeted performance should enable the user to reach a debugging point within a maximum of 10 seconds.
 \end{itemize}
 
 
