@@ -1,4 +1,5 @@
 using OpenTK;
+using OpenTK.Graphics;
 
 namespace ShaderExample
 {
@@ -6,9 +7,9 @@ namespace ShaderExample
     {
         static void Main(string[] args)
         {
-            GameWindow window = new GameWindow();
+            GameWindow window = new GameWindow(800, 600, new GraphicsMode(32, 24, 0, 8));
             Model model = new Model();
-            View view = new View(true);
+            View view = new View(false);
 
             window.UpdateFrame += (s, e) => model.Update((float)e.Time);
             window.RenderFrame += (s, e) => view.Render(model.Entities);
