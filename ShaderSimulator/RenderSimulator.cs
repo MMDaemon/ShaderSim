@@ -144,33 +144,33 @@ namespace ShaderSimulator
             double time = 0;
             _interim = 0;
 
-            Console.WriteLine("Setting uniforms");
+            Console.Write("Setting uniforms.");
             SetUniforms();
             time = _stopwatch.Elapsed.TotalMilliseconds;
-            Console.WriteLine($"Uniforms set. Duration: {time - _interim}ms");
+            Console.WriteLine($" \t\t- Completed in:\t{time - _interim}ms");
             _interim = time;
-            Console.WriteLine("Calculating vertex step");
+            Console.Write("Calculating vertex step.");
             CalculateVertexStep(instanceCount);
             time = _stopwatch.Elapsed.TotalMilliseconds;
-            Console.WriteLine($"Vertex step calculated. Duration: {time - _interim}ms");
+            Console.WriteLine($" \t- Completed in:\t{time - _interim}ms");
             _interim = time;
-            Console.WriteLine("Assembling primitives");
+            Console.Write("Assembling primitives.");
             GeneratePrimitives();
             time = _stopwatch.Elapsed.TotalMilliseconds;
-            Console.WriteLine($"Primitives assembled. Duration: {time - _interim}ms");
+            Console.WriteLine($" \t\t- Completed in:\t{time - _interim}ms");
             _interim = time;
-            Console.WriteLine("Rasterization");
+            Console.Write("Rasterization.");
             CalculateFragments();
             time = _stopwatch.Elapsed.TotalMilliseconds;
-            Console.WriteLine($"Rasterization complete. Duration: {time - _interim}ms");
+            Console.WriteLine($" \t\t\t- Completed in:\t{time - _interim}ms");
             _interim = time;
-            Console.WriteLine("Calculating fragment step");
+            Console.Write("Calculating fragment step.");
             RenderResult = CalculateFragmentStep();
             time = _stopwatch.Elapsed.TotalMilliseconds;
-            Console.WriteLine($"Fragment step calculated. Duration: {time - _interim}ms");
+            Console.WriteLine($" \t- Completed in:\t{time - _interim}ms");
             _interim = time;
 
-            Console.WriteLine("Cleanup");
+            Console.Write("Cleanup.");
 
             Attributes.Clear();
             InstancedAttributes.Clear();
@@ -181,7 +181,7 @@ namespace ShaderSimulator
             _primitives.Clear();
 
             time = _stopwatch.Elapsed.TotalMilliseconds;
-            Console.WriteLine($"Cleanup complete. Duration: {time - _interim}ms");
+            Console.WriteLine($" \t\t\t- Completed in:\t{time - _interim}ms");
             _interim = time;
             _stopwatch.Stop();
         }

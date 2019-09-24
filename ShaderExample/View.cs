@@ -61,7 +61,7 @@ namespace ShaderExample
                 stopwatch.Start();
                 vaoInformation.Key.Draw(vaoInformation.Value);
                 stopwatch.Stop();
-                Console.WriteLine($"TotalRenderTime:  {stopwatch.Elapsed.TotalMilliseconds}ms\n");
+                Console.WriteLine($"\t\t\t\tTotal Time:\t{stopwatch.Elapsed.TotalMilliseconds}ms\n");
                 if (_wrapper is RenderSimulator)
                 {
                     layers.Add(new Texture2D(((RenderSimulator)_wrapper).RenderResult));

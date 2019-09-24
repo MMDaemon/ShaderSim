@@ -60,6 +60,8 @@
     <None Include="App.config" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+    <None Include="Shaders\Translated\LightedFragment.glsl" />
+    <None Include="Shaders\Translated\LightedVertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShaderRenderer\ShaderRenderer.csproj">
